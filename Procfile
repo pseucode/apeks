@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 resource/views/luar/
+web: vendor/bin/heroku-php-apache2 resources/views/luar/
