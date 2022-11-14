@@ -31,7 +31,7 @@ class PengaduanController extends Controller
     public function masuk(){
 
         if(Auth::user()->level == 'admin'){
-            $pengaduans = Pengaduan::where('status', 'Baru')->orWhere('status', 'Sudah diteruskan')->orderBy('status', 'ASC')->orderBy('tgl_aduan', 'DESC')->get();
+            $pengaduans = Pengaduan::where('status', 'Baru')->orWhere('status', 'Sudah diTeruskan')->orderBy('status', 'ASC')->orderBy('tgl_aduan', 'DESC')->get();
             $users = User::all();
 
             return view('admin.masuk', [
