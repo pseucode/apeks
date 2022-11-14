@@ -1,0 +1,14 @@
+Host
+ec2-52-1-17-228.compute-1.amazonaws.com
+Database
+ddh1381hvt0p4h
+User
+adxcuxibsbqbwa
+Port
+5432
+Password
+c01658c3ebee0a68b3dcfb87837df6fdb64703bc46c8bbce785a654f26302905
+URI
+postgres://adxcuxibsbqbwa:c01658c3ebee0a68b3dcfb87837df6fdb64703bc46c8bbce785a654f26302905@ec2-52-1-17-228.compute-1.amazonaws.com:5432/ddh1381hvt0p4h
+Heroku CLI
+heroku pg:psql postgresql-tapered-78056 --app apeks
