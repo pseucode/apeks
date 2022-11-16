@@ -9,7 +9,7 @@
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>Apek|SMKN1SBY</title>
+    <title>Apek | SMKN1SBY</title>
 <!-- Lava Landing Page https://templatemo.com/tm-540-lava-landing-page -->
       <!-- SweetAlert -->
     <link href="{{ asset('sweetAlert/sweetalert.css') }}">
@@ -195,9 +195,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="sub-footer">
-                        <p>Copyright &copy; 2020 SMKN 1 Surabaya
-
-                        | Template by <a rel="nofollow" href="https://templatemo.com">Lava Landing Page</a></p>
+                        <p> Build with <i class="fa fa-heart" aria-hidden="true"></i> <a href="https://instagram.com/enggaryansyah">Fathur Enggaryansyah</a> | SMKN 1 Surabaya 2022 | Template by <a rel="nofollow" href="https://templatemo.com">Lava Landing Page</a></p>
                     </div>
                 </div>
             </div>
