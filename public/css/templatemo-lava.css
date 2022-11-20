@@ -147,23 +147,55 @@ body {
   }
 }
 
-a.main-button-slider {
-  font-size: 14px;
-  border-radius: 25px;
-  padding: 15px 25px;
-  background-color: #fba70b;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 1px;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+@media(max-width: 990px){
+  .click-area a {
+    padding: 15px 25px;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    z-index: 4;
+
+  }
+  
+  a.main-button-slider {
+    font-size: 14px;
+    border-radius: 25px;
+    background-color: #fba70b;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  a.main-button-slider:hover {
+    background-color: #f1556a;
+  }
 }
 
-a.main-button-slider:hover {
-  background-color: #f1556a;
+@media(min-width: 991px){
+  .click-area a {
+    padding: 15px 25px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  a.main-button-slider {
+    font-size: 14px;
+    border-radius: 25px;
+    background-color: #fba70b;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+  
+  a.main-button-slider:hover {
+    background-color: #f1556a;
+  }
 }
 
 a.main-button {
@@ -668,7 +700,7 @@ welcome
 .welcome-area .header-text .left-text {
   position: relative;
   align-self: center;
-  margin-top: 35%;
+  margin-top: 30%;
   transform: perspective(1px) translateY(-30%) !important;
 }
 
@@ -751,7 +783,7 @@ about
 #form-pengaduan {
   padding: 100px 0px;
   position: relative;
-  z-index: 9;
+  z-index: 2;
 }
 
 .banner-form{

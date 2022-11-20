@@ -105,19 +105,4 @@ class FollowupController extends Controller
         Alert::success('Sukses', 'Laporan berhasil di update');
         return redirect()->back();
     }
-
-    public function showLaporan(){
-        $followups = Followup::all();
-
-        return view('laporan.index', [
-            'followups' => $followups
-        ]);
-    }
-    
-    public function cetakLaporanPDF(){
-        $followups = Followup::all();
-
-        $pdf = PDF::loadview('laporan.laporan_pdf', compact('followups'));
-        return $pdf->stream();
-    }
 }

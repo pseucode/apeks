@@ -60,11 +60,11 @@
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="catatan">Catatan</label>
-                              <input type="text" class="form-control" id="catatan" name="catatan">
+                              <input type="text" class="form-control" id="catatan" name="catatan" required>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="teknisi">Teknisi</label>
-                              <select id="teknisi" name="user_id" class="form-control">
+                              <select id="teknisi" name="user_id" class="form-control" required>
                                 @foreach ($users as $user)
                                 @if($user->level != 'admin')
                                   <option value="{{ $user->id }}">{{ $user->name }}</option>

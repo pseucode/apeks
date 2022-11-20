@@ -41,8 +41,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/pengaduan/hapus/{id}', [App\Http\Controllers\PengaduanController::class, 'hapus']);
 
-    Route::get('/laporan', [App\Http\Controllers\FollowupController::class, 'showLaporan'])->name('laporan');
-    Route::get('/laporan/pdf', [App\Http\Controllers\FollowupController::class, 'cetakLaporanPDF'])->name('laporanPDF');
+    Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'showLaporan'])->name('laporan');
+    Route::post('/laporan/pdf', [App\Http\Controllers\LaporanController::class, 'cetakLaporanPDF'])->name('laporanPDF');
 
     Route::group(['middleware' => 'checkLevel'], function(){
         Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);

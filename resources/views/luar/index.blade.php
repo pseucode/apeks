@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Trispace:wght@600&display=swap" rel="stylesheet">
 
     <title>Apek | SMKN1SBY</title>
 <!-- Lava Landing Page https://templatemo.com/tm-540-lava-landing-page -->
@@ -19,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('css/templatemo-lava.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
 
@@ -75,9 +77,11 @@
                 <div class="row">
                     <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
                         data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                        <h1 class="desc"><em>A</em>plikasi <em>PE</em>ngaduan <em>K</em>erusakan</h1>
+                        <h1><em>A</em>plikasi <em>PE</em>ngaduan <em>K</em>erusakan</h1>
                         <p>APEK adalah platform pengaduan kerusakan peralatan IT yang ada di SMK Negeri 1 Surabaya.</p> 
-                        <a href="#form-pengaduan" class="main-button-slider">Buat Pengaduan</a>
+                        <div class="click-area">
+                            <a href="#form-pengaduan" class="main-button-slider">Buat Pengaduan</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,27 +156,27 @@
             </div>
             <div class="row" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                 <div class="col-lg-4">
-                    <h3><em>What</em></h3>
+                    <h3 class="text-unsur"><em>What</em></h3>
                     <p>Berupa informasi mengenai suatu hal yang tidak berfungsi semestinya. <br> (misal : komputer)</p> <br>
                 </div>
                 <div class="col-lg-4 enter">
-                    <h3><em>Who</em></h3>
+                    <h3 class="text-unsur"><em>Who</em></h3>
                     <p>Siapa nama pelapor yang membuat pengaduan. <br> (misal : Fathur Enggaryansyah)</p>
                 </div>
             </div>
             <div class="row" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                 <div class="col-lg-4">
-                    <h3><em>Where</em></h3>
+                    <h3 class="text-unsur"><em>Where</em></h3>
                     <p>Lokasi terjadinya Kerusakan tersebut. <br> (misal : Ruang D. 101)</p> <br>
                 </div>
                 <div class="col-lg-4 enter">
-                    <h3><em>When</em></h3>
+                    <h3 class="text-unsur"><em>When</em></h3>
                     <p>Waktu terjadinya kerusakan tersebut. <br> (misal : pada tanggal 00 bulan XX tahun 0000)</p>
                 </div>
             </div>
             <div class="row" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                 <div class="col-lg-4">
-                    <h3><em>How</em></h3>
+                    <h3 class="text-unsur"><em>How</em></h3>
                     <p>Berisi informasi terkait detail permasalahan yang ditemukan (misal : komputer mati ketika di klik power on)</p>
                 </div>
             </div>

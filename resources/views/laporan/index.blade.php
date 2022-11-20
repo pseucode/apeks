@@ -11,7 +11,20 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <a href="{{ route('laporanPDF') }}" title="Cetak PDF" class="btn btn-sm btn-danger mb-3 text-white"><i class="fa fa-file-pdf text-white"></i> PDF</a>
+              <form action="{{ route('laporanPDF') }}" method="post">
+                @csrf
+                <div class="form-row">
+                  <div class="form-group col-2">
+                    <label for="startDate">Dari Tanggal</label>
+                    <input type="date" class="form-control" id="startDate" name="startDate" required>
+                  </div>
+                  <div class="form-group col-2">
+                    <label for="endDate">Sampai Tanggal</label>
+                    <input type="date" class="form-control" id="endDate" name="endDate" required>
+                  </div>
+                </div>
+                <button type="submit" title="Cetak PDF" class="btn btn-primary mb-3"><i class="fa fa-file-pdf text-white"></i> Cetak</button>
+              </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

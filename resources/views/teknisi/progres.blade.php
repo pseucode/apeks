@@ -55,14 +55,14 @@
                                 <div class="form-group col-md-12">
                                   <label class="" for="sig{{ $followup->id }}">Tanda Tangan Pelapor</label>
                                   <div id="sig{{ $followup->id }}" class="sig"></div>
-                                  <textarea id="signature64" class="signature64" name="signed" style="display: none"></textarea>
+                                  <textarea id="signature64" class="signature64" name="signed" style="display: none" required></textarea>
                                 </div>
                               </div>
                               @if(empty($followup->penyelesaian))
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <label for="penyelesaian">Penyelesaian</label>
-                                  <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian"></textarea>
+                                  <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" required></textarea>
                                 </div>  
                               </div>
                               @endif

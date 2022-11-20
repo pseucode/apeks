@@ -29,21 +29,21 @@
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="name">Nama</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email" required>
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="level">Level</label>
-                            <select id="level" name="level" class="form-control">
+                            <select id="level" name="level" class="form-control" required>
                               <option>teknisi</option>
                               <option>admin</option>
                             </select>

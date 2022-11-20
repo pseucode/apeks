@@ -68,18 +68,18 @@
                             </div>
                             <div class="form-group col-md-6">
                               <label for="">Pengerjaan</label><br>
-                              <input type="radio" name="pengerjaan" id="Teknisi" onclick="javascript:yesnoCheck();" value="Ditangani Teknisi"> Ditangani Teknisi <br>
-                              <input type="radio" name="pengerjaan" id="PihakLuar" onclick="javascript:yesnoCheck();" value="Ditangani Pihak Luar"> Ditangani Pihak Luar <br>
+                              <input type="radio" name="pengerjaan" id="Teknisi" onclick="javascript:yesnoCheck();" value="Ditangani Teknisi" required> Ditangani Teknisi <br>
+                              <input type="radio" name="pengerjaan" id="PihakLuar" onclick="javascript:yesnoCheck();" value="Ditangani Pihak Luar" required> Ditangani Pihak Luar <br>
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="permasalahan">Permasalahan</label>
-                              <textarea rows="3" class="form-control" id="permasalahan" name="permasalahan"></textarea>
+                              <textarea rows="3" class="form-control" id="permasalahan" name="permasalahan" required></textarea>
                             </div> 
                             <div class="form-group col-md-6" style="display: none;" id="ifYes">
                               <label for="penyelesaian">Penyelesaian</label>
-                              <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian"></textarea>
+                              <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" required></textarea>
                             </div>         
                           </div>
                           @section('showInput')
