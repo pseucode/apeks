@@ -14,11 +14,11 @@
               <form action="{{ route('laporanPDF') }}" method="post">
                 @csrf
                 <div class="form-row">
-                  <div class="form-group col-2">
+                  <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <label for="startDate">Dari Tanggal</label>
                     <input type="date" class="form-control" id="startDate" name="startDate" required>
                   </div>
-                  <div class="form-group col-2">
+                  <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <label for="endDate">Sampai Tanggal</label>
                     <input type="date" class="form-control" id="endDate" name="endDate" required>
                   </div>
