@@ -11,7 +11,7 @@
       </div><!-- /.container-fluid -->
     </div>
 <section class="content">
-<div class="container-fluid">
+  <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
       <div class="col-lg-3 col-6">
@@ -68,8 +68,8 @@
             </div>
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-        </div>
-        <!-- ./col -->
       </div>
-            </section>
+        <!-- ./col -->
+  </div>
+</section>
 @endsection
