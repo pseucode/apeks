@@ -108,7 +108,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="nama">Nama Pelapor : </label>
-                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama" required>
+                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" required>
                             </div>
                             <div class="form-group">
                                 <label for="nama">Jabatan : </label>

@@ -11,10 +11,10 @@ use PDF;
 class LaporanController extends Controller
 {
     public function showLaporan(){
-        $followups = Followup::all();
+        $pengaduans = Pengaduan::all();
 
         return view('laporan.index', [
-            'followups' => $followups
+            'pengaduans' => $pengaduans
         ]);
     }
     

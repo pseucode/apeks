@@ -38,15 +38,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($followups as $followup)
+                  @foreach($pengaduans as $pengaduan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $followup->pengaduan->nama }}</td>
-                  <td>{{ $followup->pengaduan->barang }}</td>
-                  <td>{{ $followup->pengaduan->lokasi }}</td>
-                  <td>{{ $followup->pengaduan->isi_aduan }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
-                  <td>{{ $followup->pengaduan->status }}</td>
+                  <td>{{ $pengaduan->nama }}</td>
+                  <td>{{ $pengaduan->barang }}</td>
+                  <td>{{ $pengaduan->lokasi }}</td>
+                  <td>{{ $pengaduan->isi_aduan }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
+                  <td>{{ $pengaduan->status }}</td>
                 </tr>
                   @endforeach
                 </tbody>
