@@ -41,10 +41,10 @@ class FollowupController extends Controller
         }
     }
 
-    public function detail($id){
-        $pengaduans = Pengaduan::find($id);
-        return view('teknisi.detail', [
-            'pengaduans' => $pengaduans,
+    public function detailSelesai($id){
+        $followups = Followup::find($id);
+        return view('admin.detail', [
+            'followups' => $followups,
         ]);
     }
 

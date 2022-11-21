@@ -33,7 +33,7 @@
                   <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
                   <td>{{ \Carbon\Carbon::parse($followup->tgl_followups)->format('d-m-Y') }}</td>
                   <td>{{ $followup->pengaduan->status }}</td>
-                  <td><a title="Detail" class="btn btn-sm btn-secondary" href="/pengaduan/detail/{{ $followup->id }}"><i class="fa fa-list text-white"></i></a>
+                  <td><a title="Detail" class="btn btn-sm btn-secondary" href="/pengaduan/selesai/{{ $followup->id }}"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
                     @endif

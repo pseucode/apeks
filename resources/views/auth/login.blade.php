@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<title>APEK | Login</title>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 col-lg-10">
             <div class="wrap d-md-flex">
                 <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
                     <div class="text w-100">
-                        <h2>Welcome to login</h2>
-                        <p>Aplikasi Pengaduan Kerusakan</p>
+                        <h2 class="text-title">Welcome to login</h2>
+                        <h5 class="text-desc">Aplikasi Pengaduan Kerusakan</h5>
                     </div>
                 </div>
                 <div class="login-wrap p-4 p-lg-5">

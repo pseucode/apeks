@@ -96,43 +96,48 @@
                       </div>
                       <div class="modal-body">
                         <div class="row">
-                          <div class="col-md-4"> Nama </div>
-                          <div class="col-md-8"> : {{$pengaduan->nama}}</div>
+                          <div class="col-4"> Nama </div>
+                          <div class="col-8"> : {{$pengaduan->nama}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Barang </div>
-                          <div class="col-md-8"> : {{$pengaduan->barang}}</div>
+                          <div class="col-4"> Jabatan </div>
+                          <div class="col-8"> : {{$pengaduan->jabatan}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Lokasi </div>
-                          <div class="col-md-8"> : {{$pengaduan->lokasi}}</div>
+                          <div class="col-4"> Barang </div>
+                          <div class="col-8"> : {{$pengaduan->barang}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Tgl. Aduan </div>
-                          <div class="col-md-8"> : {{\Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y')}}</div>
+                          <div class="col-4"> Lokasi </div>
+                          <div class="col-8"> : {{$pengaduan->lokasi}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Isi Aduan </div>
-                          <div class="col-md-8"> : {{$pengaduan->isi_aduan}}</div>
+                          <div class="col-4"> Tgl. Aduan </div>
+                          <div class="col-8"> : {{\Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y')}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Status </div>
-                          <div class="col-md-8"> : {{$pengaduan->status}}</div>
+                          <div class="col-4"> Isi Aduan </div>
+                          <div class="col-8"> : {{$pengaduan->isi_aduan}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Catatan </div>
-                          <div class="col-md-8"> : {{$pengaduan->catatan}}</div>
+                          <div class="col-4"> Status </div>
+                          <div class="col-8"> : {{$pengaduan->status}}</div>
                         </div>
                         <hr>
                         <div class="row">
-                          <div class="col-md-4"> Nama Teknisi </div>
-                          <div class="col-md-8"> : {{isset($pengaduan->user->name) ? $pengaduan->user->name : ''}}</div>
+                          <div class="col-4"> Catatan </div>
+                          <div class="col-8"> : {{$pengaduan->catatan}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-4"> Nama Teknisi </div>
+                          <div class="col-8"> : {{isset($pengaduan->user->name) ? $pengaduan->user->name : ''}}</div>
                         </div>
                         <hr>
                       </div>

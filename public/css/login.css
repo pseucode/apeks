@@ -8309,6 +8309,14 @@ h1, h2, h3, h4, h5,
   top: 0;
   left: 0; }
 
+  .text-title {
+    font-family: 'Trispace', sans-serif;
+}
+.text-desc {
+  font-family: 'Inconsolata', monospace;
+  color: white;
+}
+
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "\f0c8";

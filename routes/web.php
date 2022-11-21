@@ -34,15 +34,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/pengaduan/progres/update/{id}', [App\Http\Controllers\FollowupController::class, 'progresUpdate']);
     Route::post('/pengaduan/masuk/update/{id}', [App\Http\Controllers\FollowupController::class, 'masukUpdate']);
     Route::post('/pengaduan/signature/{id}', [App\Http\Controllers\FollowupController::class, 'uploadSignature'])->name('simpan.ttd');
-    Route::get('/pengaduan/detail/{id}', [App\Http\Controllers\FollowupController::class, 'detail']);
+    Route::get('/pengaduan/selesai/{id}', [App\Http\Controllers\FollowupController::class, 'detailSelesai']);
+    Route::get('/pengaduan/detail/{id}', [App\Http\Controllers\PengaduanController::class, 'detail']);
 
     Route::get('/pengaduan/selesai', [App\Http\Controllers\PengaduanController::class, 'selesai'])->name('pengaduan.selesai');
     Route::post('/pengaduan/konfirmasi/{id}', [App\Http\Controllers\PengaduanController::class, 'konfirmasiSelesai']);
 
     Route::get('/pengaduan/hapus/{id}', [App\Http\Controllers\PengaduanController::class, 'hapus']);
-
-    Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'showLaporan'])->name('laporan');
-    Route::post('/laporan/pdf', [App\Http\Controllers\LaporanController::class, 'cetakLaporanPDF'])->name('laporanPDF');
 
     Route::group(['middleware' => 'checkLevel'], function(){
         Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
@@ -50,6 +48,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'hapus']);
         Route::get('/user/reset/{id}', [App\Http\Controllers\UserController::class, 'reset']);
         Route::post('/user/change-password/', [App\Http\Controllers\UserController::class,'changePassword'])->name('update-password');
+        Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'showLaporan'])->name('laporan');
+        Route::post('/laporan/pdf', [App\Http\Controllers\LaporanController::class, 'cetakLaporanPDF'])->name('laporanPDF');
     });
     
 });

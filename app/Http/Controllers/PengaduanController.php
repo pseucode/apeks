@@ -99,6 +99,13 @@ class PengaduanController extends Controller
         
     }
 
+    public function detail($id){
+        $pengaduans = Pengaduan::find($id);
+        return view('teknisi.detail', [
+            'pengaduans' => $pengaduans,
+        ]);
+    }
+
     public function selesai(){
 
         if(Auth::user()->level == 'admin'){

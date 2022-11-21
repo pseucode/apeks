@@ -34,7 +34,7 @@
                   <td>{{ $followup->pengaduan->status }}</td>
                   <td> @if($followup->pengaduan->status == 'Progres') <button type="button" title="Update" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $followup->id }}"><i class="fa fa-edit text-white"></i></button>
                    @endif
-                   <a href="/progres/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
+                   <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
 

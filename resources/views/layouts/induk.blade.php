@@ -181,6 +181,7 @@
               </li>
             </ul>
           </li>
+          @if(Auth::user()->level == 'admin')
           <li class="nav-item">
             <a href="/laporan" class="nav-link {{ request()->is('laporan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -189,6 +190,7 @@
               </p>
             </a>
           </li>
+          @endif
           @if(Auth::user()->level == 'admin')
           <li class="nav-item">
             <a href="/user" class="nav-link {{ request()->is('user') ? 'active' : '' }}">
