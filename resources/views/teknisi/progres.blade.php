@@ -34,7 +34,8 @@
                   <td>{{ $followup->pengaduan->status }}</td>
                   <td> @if($followup->pengaduan->status == 'Progres') <button type="button" title="Update" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $followup->id }}"><i class="fa fa-edit text-white"></i></button>
                    @endif
-                   <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
+                   <button type="button" title="Detail" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ProgresDetail{{ $followup->id }}"><i class="fa fa-list text-white"></i></button>
+                   {{-- <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a> --}}
                   </td>
                 </tr>
 
@@ -76,6 +77,51 @@
                     </div>
                   </div>
                 </div>
+
+                  <!-- Modal ProgresDetail -->
+                  <div class="modal fade" id="ProgresDetail{{ $followup->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Detail Laporan</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-4"> Nama </div>
+                            <div class="col-8"> : {{$followup->pengaduan->nama}}</div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-4"> No. Telp </div>
+                            <div class="col-8"> : {{$followup->pengaduan->no_telp}}</div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-4"> Jabatan </div>
+                            <div class="col-8"> : {{$followup->pengaduan->jabatan}}</div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-4"> Barang </div>
+                            <div class="col-8"> : {{$followup->pengaduan->barang}}</div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-4"> Lokasi </div>
+                            <div class="col-8"> : {{$followup->pengaduan->lokasi}}</div>
+                          </div>
+                          <hr>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="clear" class="btn btn-warning clear">Clear</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   @endforeach
                 </tbody>

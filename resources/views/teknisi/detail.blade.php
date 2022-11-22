@@ -51,10 +51,14 @@
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-4 col-md-4"> Tgl. Followup </div>
+                  <div class="col-4 col-md-4"> Tgl. Selesai </div>
                   <div class="col-8 col-md-8"> : {{\Carbon\Carbon::parse($pengaduans->followup->tgl_followups)->format('d-m-Y')}}</div>
                 </div>
-                <hr>            
+                <hr>
+                <div class="row">
+                  <div class="col-4 col-md-4"> TTD. Pelapor </div>
+                  <div class="col-8 col-md-8"> : <img width="220px" src="{{ $pengaduans->ttd() }}" alt=""></div>
+                </div>         
             </div>
           </div>
         </div>
