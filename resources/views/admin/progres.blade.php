@@ -11,6 +11,16 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              {{-- menampilkan error validasi --}}
+              @if (count($errors) > 0)
+              <div class="alert alert-danger">
+                  @foreach ($errors->all() as $error)
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
+                    <strong>{{ $error }}</strong>
+                  @endforeach
+              </div>
+              @endif
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -66,14 +76,14 @@
                             </div>
                             <div class="form-group col-md-6">
                               <label for="penyelesaian">Penyelesaian</label>
-                              <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" disabled>{{ $followup->penyelesaian }}</textarea>
+                              <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" readonly required>{{ $followup->penyelesaian }}</textarea>
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-6">
                               @if($followup->pengaduan->signature != '')
                               <label for="signature">TTD Pelapor</label>
-                              <img width="220px" src="{{ $followup->pengaduan->ttd() }}"  alt="">
+                              <img width="220px" src="{{ $followup->pengaduan->ttd() }}" alt="">
                               @endif
                             </div>
                             <div class="form-group col-6">

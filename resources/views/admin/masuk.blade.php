@@ -101,33 +101,13 @@
                         </div>
                         <hr>
                         <div class="row">
+                          <div class="col-4"> No. Telp </div>
+                          <div class="col-8"> : {{$pengaduan->no_telp}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
                           <div class="col-4"> Jabatan </div>
                           <div class="col-8"> : {{$pengaduan->jabatan}}</div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                          <div class="col-4"> Barang </div>
-                          <div class="col-8"> : {{$pengaduan->barang}}</div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                          <div class="col-4"> Lokasi </div>
-                          <div class="col-8"> : {{$pengaduan->lokasi}}</div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                          <div class="col-4"> Tgl. Aduan </div>
-                          <div class="col-8"> : {{\Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y')}}</div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                          <div class="col-4"> Isi Aduan </div>
-                          <div class="col-8"> : {{$pengaduan->isi_aduan}}</div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                          <div class="col-4"> Status </div>
-                          <div class="col-8"> : {{$pengaduan->status}}</div>
                         </div>
                         <hr>
                         <div class="row">

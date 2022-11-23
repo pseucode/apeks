@@ -16,9 +16,9 @@
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
+                  <th>No. Telp</th>
                   <th>Isi Aduan</th>
                   <th>Tgl. Aduan</th>
-                  <th>Tgl. Followup</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
@@ -28,14 +28,14 @@
                 <tr>
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $followup->pengaduan->nama }}</td>
+                  <td>{{ $followup->pengaduan->no_telp }}</td>
                   <td>{{ $followup->pengaduan->isi_aduan }}</td>
                   <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->tgl_followups)->format('d-m-Y') }}</td>
                   <td>{{ $followup->pengaduan->status }}</td>
                   <td> @if($followup->pengaduan->status == 'Progres') <button type="button" title="Update" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $followup->id }}"><i class="fa fa-edit text-white"></i></button>
                    @endif
-                   <button type="button" title="Detail" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ProgresDetail{{ $followup->id }}"><i class="fa fa-list text-white"></i></button>
-                   {{-- <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a> --}}
+                   {{-- <button type="button" title="Detail" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ProgresDetail{{ $followup->id }}"><i class="fa fa-list text-white"></i></button> --}}
+                   <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
 
@@ -79,7 +79,7 @@
                 </div>
 
                   <!-- Modal ProgresDetail -->
-                  <div class="modal fade" id="ProgresDetail{{ $followup->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  {{-- <div class="modal fade" id="ProgresDetail{{ $followup->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -121,7 +121,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
 
                   @endforeach
                 </tbody>

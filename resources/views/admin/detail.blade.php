@@ -46,6 +46,11 @@
                 </div>
                 <hr>
                 <div class="row">
+                  <div class="col-4 col-md-4"> Pengerjaan </div>
+                  <div class="col-8 col-md-8"> : {{$followups->pengerjaan}}</div>
+              </div>
+              <hr>
+                <div class="row">
                   <div class="col-4 col-md-4"> Status </div>
                   <div class="col-8 col-md-8"> : {{$followups->pengaduan->status}}</div>
                 </div>

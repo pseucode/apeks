@@ -100,9 +100,9 @@ class PengaduanController extends Controller
     }
 
     public function detail($id){
-        $pengaduans = Pengaduan::find($id);
+        $followups = Followup::find($id);
         return view('teknisi.detail', [
-            'pengaduans' => $pengaduans,
+            'followups' => $followups,
         ]);
     }
 
@@ -125,9 +125,13 @@ class PengaduanController extends Controller
     }
 
     public function konfirmasiSelesai($id, Request $request){
+        $messages = [
+            'required' => 'Field Penyelesaian & TTD Pelapor harus terisi',
+        ];
         $this->validate($request, [
-            'status' => ''
-        ]);
+            'status' => '',
+            'penyelesaian' => 'required'
+        ], $messages);
 
         $attr = $request->all();
         $attr['status'] = 'Selesai';
