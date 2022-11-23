@@ -87,31 +87,29 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ganti Password</h5>
-            @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-           @enderror
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <!-- form -->
-            <form action="{{ route('update-password') }}" method="POST">
+            <form action="{{ route('update-password', Auth::user()->id) }}" method="post">
               @csrf
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="password" class="form-label">New Password</label>
-                  <input name="password" type="password" class="form-control" id="password" placeholder="New Password">
-                </div>
-              
-                <div class="form-group col-md-6">
-                  <label for="password_confirmation" class="form-label">Confirm New Password</label>
-                  <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirm New Password">
-                </div>
+              <div class="form-row col-12 mb-3">
+                <label for="current-password" class="form-label">Current Password</label>
+                <input name="current-password" type="password" data-toggle="password" class="form-control" id="current-password" placeholder="Current Password" required>
               </div>
-            
+
+              <div class="form-row col-12 mb-3">
+                <label for="password" class="form-label">New Password</label>
+                <input name="password" type="password" data-toggle="password" class="form-control" id="password" placeholder="New Password" required>
+              </div>
+
+              <div class="form-row col-12 mb-3">
+                <label for="password_confirmation" class="form-label">Confirm New Password</label>
+                <input name="password_confirmation" data-toggle="password" type="password" class="form-control" id="password_confirmation" placeholder="Confirm New Password" required>
+              </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
@@ -187,6 +185,7 @@
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Laporan
+                
               </p>
             </a>
           </li>
@@ -275,6 +274,8 @@
 <script type="text/javascript" src="{{ asset('keith-wood-signature/jquery.signature.js') }}"></script>
 <!-- SweetAlert -->
 <script src="{{ asset('sweetAlert/sweetalert2.all.js') }}"></script>
+
+<script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -296,5 +297,6 @@
 @yield('signature-pad')
 @yield('printLaporan')
 @yield('showInput')
+
 </body>
 </html>

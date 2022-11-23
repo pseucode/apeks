@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller
 {
     public function index(){
@@ -56,21 +55,55 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function changePassword(Request $request){
-        $request->validate([
-            'password' => 'required|min:6|confirmed',
+    public function changePassword($id, Request $request){
+        $this->validate($request, [
+            'current-password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // #Match The Old Password
-        // if(!Hash::check($request->old_password, auth()->user()->password)){
-        //     return back()->with("error", "Old Password Doesn't match!");
+        if((Hash::check($request->get('current-password'), Auth::user()->password))) {
+            if(strcmp($request->get('current-password'), $request->get('password'))){
+                if(strcmp($request->get('password'), $request->get('password_confirmation')) == 0){
+                    $user = User::find($id);
+                    $user->password = Hash::make($request->get('password'));
+                    $user->update();
+                    Alert::success('Success', 'Password successfully change');
+                    return redirect()->back();
+                }else{
+                    // Current password and new password same
+                    Alert::error('Error', 'New password and confirm password not match');
+                    return redirect()->back();
+                }
+            }else{
+                // Current password and new password same
+                Alert::error('Error', 'Current password and new password cannot same');
+                return redirect()->back();
+            }          
+        }else{
+            // The passwords matches
+            Alert::error('Error', 'Current password does not matches with the password.');
+            return redirect()->back();
+        }
+
+        // if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+        //     // The passwords matches
+        //     Alert::error('Error', 'Current password does not matches with the password.');
+        //     return redirect()->back();
+        // }elseif(strcmp($request->get('current-password'), $request->get('password')) == 0){
+        //     // Current password and new password same
+        //     Alert::error('Error', 'Current password and new password cannot same');
+        //     return redirect()->back();
+        // }elseif(strcmp($request->get('password'), $request->get('password_confirmation'))== 1){
+        //     // Current password and new password same
+        //     Alert::error('Error', 'New password and confirm password doesnt match');
+        //     return redirect()->back();
+        // }else{
+        //     $user = User::find($id);
+        //     $user->password = Hash::make($request->get('password'));
+        //     $user->update();
+        //     Alert::success('success', 'Password successfully changed');
+        //     return redirect()->back();
+
         // }
-
-        #Update the new Password
-        User::whereId(auth()->user()->id)->update([
-            'password' => Hash::make($request->password)
-        ]);
-
-        return back()->with("status", "Password changed successfully!");
     }
 }

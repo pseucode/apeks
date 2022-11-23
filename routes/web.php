@@ -41,13 +41,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/pengaduan/konfirmasi/{id}', [App\Http\Controllers\PengaduanController::class, 'konfirmasiSelesai']);
 
     Route::get('/pengaduan/hapus/{id}', [App\Http\Controllers\PengaduanController::class, 'hapus']);
+    Route::post('/user/change-password/{id}', [App\Http\Controllers\UserController::class,'changePassword'])->name('update-password');
 
     Route::group(['middleware' => 'checkLevel'], function(){
         Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
         Route::post('/user/tambah', [App\Http\Controllers\UserController::class, 'tambah']);
         Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'hapus']);
         Route::get('/user/reset/{id}', [App\Http\Controllers\UserController::class, 'reset']);
-        Route::post('/user/change-password/', [App\Http\Controllers\UserController::class,'changePassword'])->name('update-password');
         Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'showLaporan'])->name('laporan');
         Route::post('/laporan/pdf', [App\Http\Controllers\LaporanController::class, 'cetakLaporanPDF'])->name('laporanPDF');
     });
