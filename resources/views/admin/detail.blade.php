@@ -40,15 +40,20 @@
                 <div class="col-8 col-md-8"> : {{\Carbon\Carbon::parse($followups->pengaduan->tgl_aduan)->format('d-m-Y')}}</div>
               </div>
                 <hr>
-                  <div class="row">
-                    <div class="col-4 col-md-4"> Isi Aduan </div>
-                    <div class="col-8 col-md-8"> : {{$followups->pengaduan->isi_aduan}}</div>
-                </div>
+              <div class="row">
+                <div class="col-4 col-md-4"> Isi Aduan </div>
+                <div class="col-8 col-md-8"> : {{$followups->pengaduan->isi_aduan}}</div>
+              </div>
                 <hr>
                 <div class="row">
                   <div class="col-4 col-md-4"> Pengerjaan </div>
                   <div class="col-8 col-md-8"> : {{$followups->pengerjaan}}</div>
-              </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-4 col-md-4"> Nama Teknisi </div>
+                  <div class="col-8 col-md-8"> : {{$followups->user->name}}</div>
+                </div>
               <hr>
                 <div class="row">
                   <div class="col-4 col-md-4"> Status </div>

@@ -80,8 +80,6 @@ class PengaduanController extends Controller
             'user' => ''
         ]);
         $attr = $request->all();
-        $catatan = $attr['catatan'];
-        $this->catatan;
 
         if($attr){
             $peng = Pengaduan::find($id);
