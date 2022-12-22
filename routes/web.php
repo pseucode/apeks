@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['middleware' => 'checkLevel'], function(){
         Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
+        Route::get('/kinerja', [App\Http\Controllers\KinerjaController::class, 'index']);
+        Route::get('/kinerja/detail/{id}', [App\Http\Controllers\KinerjaController::class, 'detail']);
         Route::post('/user/tambah', [App\Http\Controllers\UserController::class, 'tambah']);
         Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'hapus']);
         Route::get('/user/reset/{id}', [App\Http\Controllers\UserController::class, 'reset']);

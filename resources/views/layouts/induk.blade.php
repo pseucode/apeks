@@ -37,7 +37,9 @@
   <!-- Signature -->
   <link rel="stylesheet" type="text/css" href="{{ asset('keith-wood-signature/bootstrap.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('keith-wood-signature/jquery.signature.css') }}">
-  <link type="text/css" href="{{ asset('keith-wood-signature/jquery-ui.css') }}" rel="stylesheet"> 
+  <link type="text/css" href="{{ asset('keith-wood-signature/jquery-ui.css') }}" rel="stylesheet">
+  <!-- Chart Kinerja-->
+
   <style>
     .kbw-signature { width: 300px; height: 200px;}
     #sig{
@@ -185,6 +187,17 @@
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Laporan
+                
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(Auth::user()->level == 'admin')
+          <li class="nav-item">
+            <a href="/kinerja" class="nav-link {{ request()->is('kinerja') ? 'active' : '' }}">
+              <i class="nav-icon fa fa-signal"></i>
+              <p>
+                Kinerja
                 
               </p>
             </a>
