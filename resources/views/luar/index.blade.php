@@ -112,7 +112,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="nama">Jabatan : </label>
-                                <input type="text" name="jabatan" class="form-control" id="jabatan" placeholder="Siswa/Guru" required>
+                                <input type="text" name="jabatan" class="form-control" id="jabatan" placeholder="Guru/Karyawan" required>
                             </div>
                             <div class="form-group">
                                 <label for="no_telp">No. Telp : </label>
