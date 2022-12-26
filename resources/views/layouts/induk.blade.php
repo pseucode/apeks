@@ -284,6 +284,7 @@
 <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Signature Pad -->
 <script type="text/javascript" src="{{ asset('keith-wood-signature/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('keith-wood-signature/jquery.ui.touch-punch.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('keith-wood-signature/jquery.signature.js') }}"></script>
 <!-- SweetAlert -->
 <script src="{{ asset('sweetAlert/sweetalert2.all.js') }}"></script>
