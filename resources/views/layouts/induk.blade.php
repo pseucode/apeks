@@ -192,7 +192,7 @@
             </a>
           </li>
           @endif
-          @if(Auth::user()->level == 'admin')
+          {{-- @if(Auth::user()->level == 'admin')
           <li class="nav-item">
             <a href="/kinerja" class="nav-link {{ request()->is('kinerja') ? 'active' : '' }}">
               <i class="nav-icon fa fa-signal"></i>
@@ -202,7 +202,7 @@
               </p>
             </a>
           </li>
-          @endif
+          @endif --}}
           @if(Auth::user()->level == 'admin')
           <li class="nav-item">
             <a href="/user" class="nav-link {{ request()->is('user') ? 'active' : '' }}">

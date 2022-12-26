@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use PDF;
+use DateTime;
 
 class FollowupController extends Controller
 {
@@ -26,11 +27,25 @@ class FollowupController extends Controller
         $attr['user_id'] = $pengaduans->user_id;
         $attr['pengaduan_id'] = $pengaduans->id;
         $attr['tgl_followups'] = Carbon::now();
-        $followups = Followup::create($attr);
 
-        $peng = Pengaduan::find($id);
-        $peng->status = 'Progres';
-        $peng->save();
+        // $startDate = $pengaduans->tgl_aduan; //string Y-m-d
+        // $endDate = Carbon::today()->toDateString(); //string Y-m-d
+        // Carbon::now()->subDays(2)->toDateTimeString();
+        // Carbon::
+        
+        // if($pengaduans->updated_at == ){
+        //     // $followups->poin = 2;
+        //     // Followup::create($followups->poin);
+        //     dd('anda mendapatkan 5 poin');
+        // }else{
+        //     // $followups->poin = 5;
+        //     // Followup::create($followups->poin);
+        //     dd('anda mendapatkan 2 poin');
+        // }
+
+        $followups = Followup::create($attr);
+        $pengaduans->status = 'Progres';
+        $pengaduans->save();
 
         if($followups) {
         Alert::success('Sukses', 'Data berhasil diUpdate');

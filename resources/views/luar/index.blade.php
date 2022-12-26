@@ -105,7 +105,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">Form Pengaduan</h5>
                             <form action="{{ route('pengaduan.tambah') }}" method="post">
-                            @csrf
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="nama">Nama Pelapor : </label>
                                 <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" required>
