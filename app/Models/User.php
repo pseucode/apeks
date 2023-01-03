@@ -45,4 +45,7 @@ class User extends Authenticatable
     public function followup(){
         return $this->hasMany(Followup::class);
     }
+    public function kinerja(){
+        return $this->belongsTo(Kinerja::class);
+    }
 }

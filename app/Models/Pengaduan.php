@@ -17,6 +17,10 @@ class Pengaduan extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function kinerja(){
+        return $this->belongsTo(Kinerja::class);
+    }
+
     public function followup(){
         return $this->hasOne(Followup::class);
     }

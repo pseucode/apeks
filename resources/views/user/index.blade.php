@@ -44,6 +44,7 @@
                           <div class="form-group col-md-6">
                             <label for="level">Level</label>
                             <select id="level" name="level" class="form-control" required>
+                              <option disabled selected value>----Pilih Level----</option>
                               <option>teknisi</option>
                               <option>admin</option>
                             </select>

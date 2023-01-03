@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Followup;
+use App\Models\Kinerja;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Builder;
-use PDF;
-use DateTime;
+
 
 class FollowupController extends Controller
 {
@@ -27,23 +27,33 @@ class FollowupController extends Controller
         $attr['user_id'] = $pengaduans->user_id;
         $attr['pengaduan_id'] = $pengaduans->id;
         $attr['tgl_followups'] = Carbon::now();
-
-        // $startDate = $pengaduans->tgl_aduan; //string Y-m-d
-        // $endDate = Carbon::today()->toDateString(); //string Y-m-d
-        // Carbon::now()->subDays(2)->toDateTimeString();
-        // Carbon::
-        
-        // if($pengaduans->updated_at == ){
-        //     // $followups->poin = 2;
-        //     // Followup::create($followups->poin);
-        //     dd('anda mendapatkan 5 poin');
-        // }else{
-        //     // $followups->poin = 5;
-        //     // Followup::create($followups->poin);
-        //     dd('anda mendapatkan 2 poin');
-        // }
-
+    
         $followups = Followup::create($attr);
+
+        $tgl_begin2 = new DateTime(Carbon::now()->format('Y-m-d'));
+        $tgl_end2 = New DateTime($pengaduans->updated_at->addDay(3)->format('Y-m-d'));
+
+        if(Carbon::now()->format('Y-m-d') <= $pengaduans->updated_at->addDay(2)->format('Y-m-d')){
+
+            Kinerja::create([
+                'poin_cek' => 5,
+                'over_cek' => '0 Hari',
+                'user_id'=> $pengaduans->user_id,
+                'pengaduan_id' => $pengaduans->id,
+                'followup_id' => $followups->id
+            ]);
+
+        }elseif(Carbon::now()->format('Y-m-d') >= $pengaduans->updated_at->addDay(3)->format('Y-m-d')){
+            $jarak = $tgl_end2->diff($tgl_begin2);
+            Kinerja::create([
+                'poin_cek' => 2,
+                'over_cek' => $jarak->d . ' Hari',
+                'user_id'=> $pengaduans->user_id,
+                'pengaduan_id' => $pengaduans->id,
+                'followup_id' => $followups->id
+            ]);
+        }
+
         $pengaduans->status = 'Progres';
         $pengaduans->save();
 
@@ -100,6 +110,25 @@ class FollowupController extends Controller
         $file = $folderPath . $signature;
         file_put_contents($file, $image_base64);
 
+        $followups = Followup::find($id);
+
+        $tgl_begin2 = new DateTime(Carbon::now()->format('Y-m-d'));
+        $tgl_end2 = New DateTime($followups->updated_at->addDay(6)->format('Y-m-d'));
+
+        if(Carbon::now()->format('Y-m-d') <= $followups->updated_at->addDay(5)->format('Y-m-d')){
+            Kinerja::where('followup_id', $id)->update([
+                'poin_selesai' => 5,
+                'over_selesai' => '0 Hari'
+            ]);
+
+        }elseif(Carbon::now()->format('Y-m-d') >= $followups->updated_at->addDay(6)->format('Y-m-d')){
+            $jarak = $tgl_end2->diff($tgl_begin2);
+            Kinerja::where('followup_id', $id)->update([
+                'poin_selesai' => 2,
+                'over_selesai' => $jarak->d . ' Hari'
+            ]);
+        }
+
         if(!empty($request->penyelesaian)){
             Followup::find($id)->update([
                 'penyelesaian' => $request->penyelesaian,
@@ -110,8 +139,6 @@ class FollowupController extends Controller
                 'tgl_followups' => Carbon::now()
             ]);
         }
-
-        $followups = Followup::find($id);
         $followups->pengaduan->signature = $signature;
         $followups->pengaduan->status = 'Menunggu Konfirmasi Sarpas';
         $followups->pengaduan->catatan = 'Telah di Tindak Lanjuti';

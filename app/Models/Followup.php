@@ -17,4 +17,8 @@ class Followup extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function kinerja(){
+        return $this->belongsTo(Kinerja::class);
+    }
 }

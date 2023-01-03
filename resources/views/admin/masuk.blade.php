@@ -65,6 +65,7 @@
                             <div class="form-group col-md-6">
                               <label for="teknisi">Teknisi</label>
                               <select id="teknisi" name="user_id" class="form-control" required>
+                                <option disabled selected value>---Pilih Teknisi---</option>
                                 @foreach ($users as $user)
                                 @if($user->level != 'admin')
                                   <option value="{{ $user->id }}">{{ $user->name }}</option>
