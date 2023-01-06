@@ -38,7 +38,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('keith-wood-signature/bootstrap.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('keith-wood-signature/jquery.signature.css') }}">
   <link type="text/css" href="{{ asset('keith-wood-signature/jquery-ui.css') }}" rel="stylesheet">
-  <!-- Chart Kinerja-->
 
   <style>
     .kbw-signature { width: 300px; height: 200px;}
@@ -311,6 +310,7 @@
 @yield('signature-pad')
 @yield('printLaporan')
 @yield('showInput')
+@yield('chart')
 
 </body>
 </html>

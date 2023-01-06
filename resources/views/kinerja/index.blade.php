@@ -28,7 +28,7 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->jmlKasus }}</td>
-                  <td></td>
+                  <td>{{ $user->rataKinerja }}</td>
                   <td>
                     <a href="/kinerja/detail/{{ $user->user_id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a> 
                   </td>

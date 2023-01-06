@@ -71,8 +71,8 @@
                             <div class="form-group col-md-6">
                               {{-- onclick="javascript:yesnoCheck();"  --}}
                               <label for="">Pengerjaan</label><br>
-                              <input type="radio" name="pengerjaan" id="Teknisi" onclick="getPengerjaan(this)" value="Ditangani Teknisi" required> Ditangani Teknisi <br>
-                              <input type="radio" name="pengerjaan" id="PihakLuar" onclick="getPengerjaan(this)" value="Ditangani Pihak Luar" required> Ditangani Pihak Luar <br>
+                              <input type="radio" name="pengerjaan" id="Teknisi" onclick="getPengerjaan(this)" value="Teknisi" required> Ditangani Teknisi <br>
+                              <input type="radio" name="pengerjaan" id="PihakLuar" onclick="getPengerjaan(this)" value="Pihak Luar" required> Ditangani Pihak Luar <br>
                             </div>
                           </div>
                           <div class="form-row">
@@ -167,13 +167,13 @@
     kotak = document.getElementsByClassName('ifYes');
     kotak2 = document.getElementsByClassName('penyelesaian');
     switch (data.value) {
-      case 'Ditangani Teknisi':
+      case 'Teknisi':
         for (let i = 0; i < kotak.length; i++) {
           kotak[i].style.display = 'block';
           kotak2[i].setAttribute('required', true);
         }
         break;
-      case 'Ditangani Pihak Luar':
+      case 'Pihak Luar':
         for (let i = 0; i < kotak.length; i++) {
           kotak[i].style.display = 'none';
           kotak2[i].removeAttribute('required');

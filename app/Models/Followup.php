@@ -19,6 +19,6 @@ class Followup extends Model
     }
 
     public function kinerja(){
-        return $this->belongsTo(Kinerja::class);
+        return $this->hasOne(Kinerja::class);
     }
 }

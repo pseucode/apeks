@@ -45,6 +45,15 @@ class FollowupController extends Controller
 
         }elseif(Carbon::now()->format('Y-m-d') >= $pengaduans->updated_at->addDay(3)->format('Y-m-d')){
             $jarak = $tgl_end2->diff($tgl_begin2);
+            if($jarak->d == 0) {
+                Kinerja::create([
+                'poin_cek' => 5,
+                'over_cek' => $jarak->d . ' Hari',
+                'user_id'=> $pengaduans->user_id,
+                'pengaduan_id' => $pengaduans->id,
+                'followup_id' => $followups->id
+            ]);
+            }elseif($jarak->d != 0){
             Kinerja::create([
                 'poin_cek' => 2,
                 'over_cek' => $jarak->d . ' Hari',
@@ -52,6 +61,7 @@ class FollowupController extends Controller
                 'pengaduan_id' => $pengaduans->id,
                 'followup_id' => $followups->id
             ]);
+            }
         }
 
         $pengaduans->status = 'Progres';
@@ -127,6 +137,7 @@ class FollowupController extends Controller
                 'poin_selesai' => 2,
                 'over_selesai' => $jarak->d . ' Hari'
             ]);
+
         }
 
         if(!empty($request->penyelesaian)){

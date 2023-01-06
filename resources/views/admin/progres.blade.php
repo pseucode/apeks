@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group col-6">
                               <label for="pengerjaan">Pengerjaan</label>
-                              <input type="text" class="form-control" value="{{$followup->pengerjaan}}" id="pengerjaan" name="pengerjaan" disabled>
+                              <input type="text" class="form-control" value="{{$followup->pengerjaan . '-' . $followup->user->name}}" id="pengerjaan" name="pengerjaan" disabled>
                             </div>
                           </div>
                           <div class="modal-footer">

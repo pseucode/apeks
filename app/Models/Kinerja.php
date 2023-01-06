@@ -12,12 +12,12 @@ class Kinerja extends Model
     protected $fillable = ['poin_cek', 'poin_selesai', 'over_cek', 'over_selesai', 'user_id', 'pengaduan_id', 'followup_id'];
 
     public function pengaduan(){
-        return $this->hasOne(Pengaduan::class);
+        return $this->belongsTo(Pengaduan::class);
     }
     public function followup(){
-        return $this->hasOne(followup::class);
+        return $this->belongsTo(followup::class);
     }
     public function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }
