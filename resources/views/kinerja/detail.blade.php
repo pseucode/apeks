@@ -18,7 +18,7 @@
                   <h6>Bobot Penilaian Kinerja</h6>
                   <p>Penanganan Laporan Tepat Waktu : 5 POIN <br>Penanganan Melebihi Batas Waktu : 2 POIN</p>
                   <h6>Hasil Kinerja</h6>
-                  <p>Laporan yang di tangani : {{ $totalKasus }} Kasus <br>Rata-Rata Kinerja (1-10) : {{ $rataKinerja }} Bintang</p>
+                  <p>Laporan yang di tangani : {{ $totalKasus }} Kasus <br>Rata-Rata Kinerja (1-10) : {{ $users->rating }} Bintang</p>
                 </div>
                 <div class="col-md-6">
                   <h6>Chart Penanganan Laporan </h6>

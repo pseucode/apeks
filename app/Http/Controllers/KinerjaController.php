@@ -10,20 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class KinerjaController extends Controller
 {
-
     public function index(){
         $users = User::join('pengaduans', 'users.id', '=', 'pengaduans.user_id')
-        ->select('name', 'user_id', DB::raw('COUNT(pengaduans.id) as jmlKasus'))
+        ->select('name', 'user_id', 'rating', DB::raw('COUNT(pengaduans.id) as jmlKasus'))
         ->groupBy('name')
         ->groupBy('user_id')
+        ->groupBy('rating')
         ->get();
 
-        // $rating = Kinerja::select('user_id', );
-        //menampilkan rating masing-masing teknisi
-
         return view('kinerja.index', [
-            'users' => $users, 
-            // 'rating' => $rating
+            'users' => $users
         ]);
     }
 
@@ -49,8 +45,9 @@ class KinerjaController extends Controller
 
         if($kinerjaBaik || $kinerjaSedang || $kinerjaBuruk > 0){
             $rataKinerja = ((10 * $kinerjaBaik) + (7 * $kinerjaSedang) + (4 *$kinerjaBuruk)) / ($kinerjaBaik+$kinerjaSedang+$kinerjaBuruk);
-        }else {
-            $rataKinerja = '0';
+            User::where('id', $id)->update([
+                'rating' => $rataKinerja
+            ]);
         }
 
         return view('kinerja.detail', [
@@ -58,8 +55,7 @@ class KinerjaController extends Controller
             'totalKasus' => $totalKasus,
             'kinerjaBaik' => $kinerjaBaik,
             'kinerjaSedang' => $kinerjaSedang,
-            'kinerjaBuruk' => $kinerjaBuruk,
-            'rataKinerja' => $rataKinerja
+            'kinerjaBuruk' => $kinerjaBuruk
         ]);
 
     }
