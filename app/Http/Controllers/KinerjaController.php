@@ -28,6 +28,9 @@ class KinerjaController extends Controller
         $totalKasus = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
             $query->where('status', 'Selesai');
         })->count();
+        $allKasus = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
+            $query->where('status', 'Selesai');
+        })->get();
         // $kinerja = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
         //     $query->where('status', 'Selesai');
         // })->sum(DB::raw('poin_cek + poin_selesai'));
@@ -52,6 +55,7 @@ class KinerjaController extends Controller
 
         return view('kinerja.detail', [
             'users' => $users,
+            'allKasus' => $allKasus,
             'totalKasus' => $totalKasus,
             'kinerjaBaik' => $kinerjaBaik,
             'kinerjaSedang' => $kinerjaSedang,

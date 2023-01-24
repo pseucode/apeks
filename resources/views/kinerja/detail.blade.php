@@ -25,6 +25,35 @@
                   <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
+
+              <table id="tbl_kinerja" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Isi Aduan</th>
+                  <th>Poin Cek</th>
+                  <th>Poin Selesai</th>
+                  <th>Over Cek</th>
+                  <th>Over Selesai</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach($allKasus as $kasus)
+                <tr>
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $kasus->pengaduan->nama }}</td>
+                  <td>{{ $kasus->pengaduan->isi_aduan }}</td>
+                  <td>{{ $kasus->poin_cek . " Poin" }}</td>
+                  <td>{{ $kasus->poin_selesai . " Poin" }}</td>
+                  <td>{{ $kasus->over_cek }}</td>
+                  <td>{{ $kasus->over_selesai }}</td>
+                </tr>
+        
+                  @endforeach
+                </tbody>
+              </table>
+
             </div>
           </div>
         </div>
@@ -40,6 +69,12 @@
 @section('chart')
 <script type="text/javascript" src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 <script type="text/javascript">
+ var table = $('#tbl_kinerja').DataTable({
+    "responsive": true,
+    "autoWidth": false,
+    pageLength : 5,
+    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
+  });
   	//-------------
     //- DONUT CHART -
     //-------------

@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/pengaduan/forward/{id}', [App\Http\Controllers\PengaduanController::class, 'forward']);
 
     Route::get('/pengaduan/progres', [App\Http\Controllers\FollowupController::class, 'progres']);
-    Route::get('/pengaduan/progres/update/{id}', [App\Http\Controllers\FollowupController::class, 'progresUpdate']);
+    Route::post('/pengaduan/progres/update/{id}', [App\Http\Controllers\FollowupController::class, 'progresUpdate']);
     Route::post('/pengaduan/masuk/update/{id}', [App\Http\Controllers\FollowupController::class, 'masukUpdate']);
     Route::post('/pengaduan/signature/{id}', [App\Http\Controllers\FollowupController::class, 'uploadSignature'])->name('simpan.ttd');
     Route::get('/pengaduan/selesai/{id}', [App\Http\Controllers\FollowupController::class, 'detailSelesai']);

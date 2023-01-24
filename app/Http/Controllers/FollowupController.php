@@ -18,7 +18,6 @@ class FollowupController extends Controller
         $pengaduans = Pengaduan::find($id);
         $this->validate($request, [
             'permasalahan' => '',
-            'penyelesaian' => '',
             'tgl_followups' => '',
             'pengerjaan' => '',
             'status' => ''
@@ -31,9 +30,9 @@ class FollowupController extends Controller
         $followups = Followup::create($attr);
 
         $tgl_begin2 = new DateTime(Carbon::now()->format('Y-m-d'));
-        $tgl_end2 = New DateTime($pengaduans->updated_at->addDay(3)->format('Y-m-d'));
+        $tgl_end2 = New DateTime($pengaduans->updated_at->addDay(2)->format('Y-m-d'));
 
-        if(Carbon::now()->format('Y-m-d') <= $pengaduans->updated_at->addDay(2)->format('Y-m-d')){
+        if(Carbon::now()->format('Y-m-d') < $pengaduans->updated_at->addDay(2)->format('Y-m-d')){
 
             Kinerja::create([
                 'poin_cek' => 5,
@@ -43,7 +42,7 @@ class FollowupController extends Controller
                 'followup_id' => $followups->id
             ]);
 
-        }elseif(Carbon::now()->format('Y-m-d') >= $pengaduans->updated_at->addDay(3)->format('Y-m-d')){
+        }elseif(Carbon::now()->format('Y-m-d') >= $pengaduans->updated_at->addDay(2)->format('Y-m-d')){
             $jarak = $tgl_end2->diff($tgl_begin2);
             if($jarak->d == 0) {
                 Kinerja::create([
@@ -71,7 +70,26 @@ class FollowupController extends Controller
         Alert::success('Sukses', 'Data berhasil diUpdate');
         return redirect()->back();
         }else{
-            Alert::success('Gagal', 'Data gagal diUpdate');
+            Alert::error('Gagal', 'Data gagal diUpdate');
+            return redirect()->back();
+        }
+    }
+
+    public function progresUpdate($id, Request $request){
+        $this->validate($request, [
+            'penyelesaian' => ''
+        ]);
+
+
+        $followups = Followup::find($id);
+        $followups->penyelesaian = $request->penyelesaian;
+        $followups->save();
+         
+        if($followups) {
+            Alert::success('Sukses', 'Data berhasil diUpdate');
+            return redirect()->back();
+        }else{
+            Alert::error('Gagal', 'Data gagal diUpdate');
             return redirect()->back();
         }
     }
@@ -121,41 +139,63 @@ class FollowupController extends Controller
         file_put_contents($file, $image_base64);
 
         $followups = Followup::find($id);
+        if(empty($followups->penyelesaian)){
+            Alert::error('Gagal', 'Harap isi penyelesaian perbaikan');
+            return redirect()->back();
+        }else{
+            $tgl_begin2 = new DateTime(Carbon::now()->format('Y-m-d'));
+            $tgl_end2 = New DateTime($followups->updated_at->addDay(5)->format('Y-m-d'));
 
-        $tgl_begin2 = new DateTime(Carbon::now()->format('Y-m-d'));
-        $tgl_end2 = New DateTime($followups->updated_at->addDay(6)->format('Y-m-d'));
+            if(Carbon::now()->format('Y-m-d') < $followups->updated_at->addDay(5)->format('Y-m-d')){
+                Kinerja::where('followup_id', $id)->update([
+                    'poin_selesai' => 5,
+                    'over_selesai' => '0 Hari'
+                ]);
 
-        if(Carbon::now()->format('Y-m-d') <= $followups->updated_at->addDay(5)->format('Y-m-d')){
-            Kinerja::where('followup_id', $id)->update([
-                'poin_selesai' => 5,
-                'over_selesai' => '0 Hari'
-            ]);
+                // $kinerja = Kinerja::where('followup_id', $id);
+                // $kinerja->total_poin = $kinerja->poin_cek + $kinerja->poin_selesai;
+                // dd($kinerja->total_poin);
+                // $kinerja->save();
 
-        }elseif(Carbon::now()->format('Y-m-d') >= $followups->updated_at->addDay(6)->format('Y-m-d')){
-            $jarak = $tgl_end2->diff($tgl_begin2);
-            Kinerja::where('followup_id', $id)->update([
-                'poin_selesai' => 2,
-                'over_selesai' => $jarak->d . ' Hari'
-            ]);
+            }elseif(Carbon::now()->format('Y-m-d') >= $followups->updated_at->addDay(5)->format('Y-m-d')){
+                $jarak = $tgl_end2->diff($tgl_begin2);
+                if($jarak->d == 0) {
+                    Kinerja::where('followup_id', $id)->update([
+                        'poin_selesai' => 5,
+                        'over_selesai' => $jarak->d . ' Hari'
+                    ]);
+                }elseif($jarak->d != 0){
+                    Kinerja::where('followup_id', $id)->update([
+                        'poin_selesai' => 2,
+                        'over_selesai' => $jarak->d . ' Hari'
+                    ]);
+                }
 
+
+                // $kinerja = Kinerja::where('followup_id', $id);
+                // $kinerja->total_poin = $kinerja->poin_cek + $kinerja->poin_selesai;
+                // dd($kinerja->total_poin);
+                // $kinerja->save();
+
+            }
+
+            if(!empty($request->penyelesaian)){
+                Followup::find($id)->update([
+                    'penyelesaian' => $request->penyelesaian,
+                    'tgl_followups' => Carbon::now()
+                ]);
+            }else {
+                Followup::find($id)->update([
+                    'tgl_followups' => Carbon::now()
+                ]);
+            }
+            $followups->pengaduan->signature = $signature;
+            $followups->pengaduan->status = 'Menunggu Konfirmasi Sarpas';
+            $followups->pengaduan->catatan = 'Telah di Tindak Lanjuti';
+            $followups->pengaduan->save();
+
+            Alert::success('Sukses', 'Laporan berhasil di update');
+            return redirect()->back();
         }
-
-        if(!empty($request->penyelesaian)){
-            Followup::find($id)->update([
-                'penyelesaian' => $request->penyelesaian,
-                'tgl_followups' => Carbon::now()
-            ]);
-        }else {
-            Followup::find($id)->update([
-                'tgl_followups' => Carbon::now()
-            ]);
-        }
-        $followups->pengaduan->signature = $signature;
-        $followups->pengaduan->status = 'Menunggu Konfirmasi Sarpas';
-        $followups->pengaduan->catatan = 'Telah di Tindak Lanjuti';
-        $followups->pengaduan->save();
-
-        Alert::success('Sukses', 'Laporan berhasil di update');
-        return redirect()->back();
     }
 }

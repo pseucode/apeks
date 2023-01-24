@@ -32,12 +32,45 @@
                   <td>{{ $followup->pengaduan->isi_aduan }}</td>
                   <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
                   <td>{{ $followup->pengaduan->status }}</td>
-                  <td> @if($followup->pengaduan->status == 'Progres') <button type="button" title="Update" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $followup->id }}"><i class="fa fa-edit text-white"></i></button>
-                   @endif
-                   {{-- <button type="button" title="Detail" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ProgresDetail{{ $followup->id }}"><i class="fa fa-list text-white"></i></button> --}}
+                  <td> 
+                    @if($followup->pengaduan->status == 'Progres') 
+                        @if(empty($followup->penyelesaian))
+                        <button type="button" title="Update Laporan" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ModalUpdate{{ $followup->id }}"><i class="fa fa-edit text-white"></i></button>
+                        @endif
+                    <button type="button" title="Upload Signature" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $followup->id }}"><i class="fa fa-paint-brush text-white"></i></button>
+                    @endif
                    <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
+
+                <!-- Modal Update -->
+                <div class="modal fade" id="ModalUpdate{{$followup->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Update Laporan</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/pengaduan/progres/update/{{$followup->id}}" method="post" enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="penyelesaian">Penyelesaian</label>
+                                <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" required></textarea>
+                              </div>   
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                 <!-- Modal Signature-->
                 <div class="modal fade" id="CustomerSignature{{ $followup->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -59,14 +92,6 @@
                                   <textarea id="signature64" class="signature64" name="signed" style="display: none" required></textarea>
                                 </div>
                               </div>
-                              @if(empty($followup->penyelesaian))
-                              <div class="form-row">
-                                <div class="form-group col-md-6">
-                                  <label for="penyelesaian">Penyelesaian</label>
-                                  <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" required></textarea>
-                                </div>  
-                              </div>
-                              @endif
                               <button type="submit" class="btn btn-success">Save</button>
                           </form>
                         </div>
@@ -77,51 +102,6 @@
                     </div>
                   </div>
                 </div>
-
-                  <!-- Modal ProgresDetail -->
-                  {{-- <div class="modal fade" id="ProgresDetail{{ $followup->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">Detail Laporan</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-4"> Nama </div>
-                            <div class="col-8"> : {{$followup->pengaduan->nama}}</div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-4"> No. Telp </div>
-                            <div class="col-8"> : {{$followup->pengaduan->no_telp}}</div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-4"> Jabatan </div>
-                            <div class="col-8"> : {{$followup->pengaduan->jabatan}}</div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-4"> Barang </div>
-                            <div class="col-8"> : {{$followup->pengaduan->barang}}</div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-4"> Lokasi </div>
-                            <div class="col-8"> : {{$followup->pengaduan->lokasi}}</div>
-                          </div>
-                          <hr>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" id="clear" class="btn btn-warning clear">Clear</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div> --}}
 
                   @endforeach
                 </tbody>

@@ -21,7 +21,7 @@
               </div>
               <hr>
               <div class="row">
-                <div class="col-4 col-md-4"> Barang IT </div>
+                <div class="col-4 col-md-4"> Barang </div>
                 <div class="col-8 col-md-8"> : {{$followups->pengaduan->barang}}</div>
               </div>
               <hr>

@@ -69,22 +69,17 @@
                               <textarea rows="3" class="form-control" id="isi_aduan" name="isi_aduan" disabled>{{$pengaduan->isi_aduan}}</textarea>
                             </div>
                             <div class="form-group col-md-6">
-                              {{-- onclick="javascript:yesnoCheck();"  --}}
+                              {{-- onclick="getPengerjaan(this)"  --}}
                               <label for="">Pengerjaan</label><br>
-                              <input type="radio" name="pengerjaan" id="Teknisi" onclick="getPengerjaan(this)" value="Teknisi" required> Ditangani Teknisi <br>
-                              <input type="radio" name="pengerjaan" id="PihakLuar" onclick="getPengerjaan(this)" value="Pihak Luar" required> Ditangani Pihak Luar <br>
+                              <input type="radio" name="pengerjaan" id="Teknisi" value="Teknisi" required> Ditangani Teknisi <br>
+                              <input type="radio" name="pengerjaan" id="PihakLuar" value="Pihak Luar" required> Ditangani Pihak Luar <br>
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="permasalahan">Permasalahan</label>
                               <textarea rows="3" class="form-control" id="permasalahan" name="permasalahan" required></textarea>
-                            </div> 
-                            <div class="form-group col-md-6 ifYes" id="ifYes" style="display: none;">
-                              <label for="penyelesaian">Penyelesaian</label>
-                              <textarea rows="3" class="form-control penyelesaian" id="penyelesaian" name="penyelesaian"></textarea>
                             </div>   
-    
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -158,7 +153,7 @@
 @endsection
 
 @section('showInput')
-<script>
+{{-- <script>
     window.onload = function() {
       document.getElementById('ifYes').style.display = 'none';
   }
@@ -183,50 +178,5 @@
         break;
     }
   }
-</script>
+</script> --}}
 @endsection
-
-{{-- @section('showInput')
-<script>
-
- function yesnoCheck() {
-   if(document.getElementById("Teknisi").checked) {
-     document.getElementById("ifYes").style.display = 'block';
-     document.getElementById("penyelesaian").setAttribute('required', true);
-   } 
-   if(document.getElementById("PihakLuar").checked) {
-     document.getElementById("ifYes").style.display = 'none';
-     document.getElementById("penyelesaian").removeAttribute('required');
-   } 
- }
-</script>
-@endsection --}}
-
-{{-- @section('hahaha')
-<script type="text/javascript">
-  function yesnoCheck(){
-    var select = document.getElementsByClassName('pengerjaan');
-    for(var i = 0; i < select.length; i++){
-      if(select[i].checked){
-        var wadah = document.getElementsByClassName('ifYes');
-        for(var a = 0; a < wadah.length; a++){
-        wadah[a].style.display = 'block';
-          var tempat = document.getElementsByClassName('penyelesaian')
-          for(var b = 0; b < tempat.length; b++){
-            tempat[b].setAttribute('required', true);
-          }
-        }
-      }else if(select[1].checked){
-        var wadah = document.getElementsByClassName('ifYes');
-        for(var a = 0; a < wadah.length; a++){
-          wadah[a].style.display = 'none';
-          var tempat = document.getElementsByClassName('penyelesaian')
-          for(var b = 0; b < tempat.length; b++){
-            tempat[b].removeAttribute('required');
-          }
-        }
-      }
-    }
-  }
-</script>
-@endsection --}}

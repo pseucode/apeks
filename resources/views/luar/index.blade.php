@@ -78,7 +78,7 @@
                     <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
                         data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                         <h1><em>A</em>plikasi <em>PE</em>ngaduan <em>K</em>erusakan</h1>
-                        <p>APEK adalah platform pengaduan kerusakan peralatan IT yang ada di SMK Negeri 1 Surabaya.</p> 
+                        <p>APEK adalah platform pengaduan kerusakan barang yang ada di SMK Negeri 1 Surabaya.</p> 
                         <div class="click-area">
                             <a href="#form-pengaduan" class="main-button-slider">Buat Pengaduan</a>
                         </div>
@@ -119,7 +119,7 @@
                                 <input type="text" name="no_telp" class="form-control" id="no_telp" placeholder="081xxxxxxxxx" required>
                             </div>
                             <div class="form-group">
-                                <label for="barang">Barang IT : </label>
+                                <label for="barang">Barang : </label>
                                 <input type="text" name="barang" class="form-control" id="barang" placeholder="Komputer, Printer, Mouse" required>
                             </div>
                             <div class="form-group">
