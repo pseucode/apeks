@@ -1,3 +1,9 @@
 .text-unsur {
     font-family: 'Trispace', sans-serif;
 }
+
+@media(max-width: 480px){
+    .hilang {
+        display: hidden;
+    }
+}

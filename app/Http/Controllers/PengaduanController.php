@@ -19,12 +19,17 @@ class PengaduanController extends Controller
         $progres = Pengaduan::where('status', 'Progres')->count();
         $selesai = Pengaduan::where('status', 'Selesai')->count();
         $totalUser = User::count();
+        $year = Carbon::now()->format('Y');
+        $totalLaporanByYear = Pengaduan::whereYear('created_at', $year)->count();
+        $rating = User::where('id', Auth::user()->id)->get();
 
         return view('layouts.dashboard', [
             'masuk' => $masuk,
             'progres' => $progres,
             'selesai' => $selesai,
-            'totalUser' => $totalUser
+            'totalUser' => $totalUser,
+            'totalLaporanByYear' => $totalLaporanByYear,
+            'rating' => $rating
         ]);
     }
 

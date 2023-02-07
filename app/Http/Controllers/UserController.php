@@ -70,40 +70,19 @@ class UserController extends Controller
                     Alert::success('Success', 'Password successfully change');
                     return redirect()->back();
                 }else{
-                    // Current password and new password same
+                    // Current password and new password not match
                     Alert::error('Error', 'New password and confirm password not match');
                     return redirect()->back();
                 }
             }else{
-                // Current password and new password same
-                Alert::error('Error', 'Current password and new password cannot same');
+                // Current password and new password cannot same
+                Alert::error('Error', 'Current password and new password cannot be same');
                 return redirect()->back();
             }          
         }else{
-            // The passwords matches
+            // Current password does not matches with the password.
             Alert::error('Error', 'Current password does not matches with the password.');
             return redirect()->back();
         }
-
-        // if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-        //     // The passwords matches
-        //     Alert::error('Error', 'Current password does not matches with the password.');
-        //     return redirect()->back();
-        // }elseif(strcmp($request->get('current-password'), $request->get('password')) == 0){
-        //     // Current password and new password same
-        //     Alert::error('Error', 'Current password and new password cannot same');
-        //     return redirect()->back();
-        // }elseif(strcmp($request->get('password'), $request->get('password_confirmation'))== 1){
-        //     // Current password and new password same
-        //     Alert::error('Error', 'New password and confirm password doesnt match');
-        //     return redirect()->back();
-        // }else{
-        //     $user = User::find($id);
-        //     $user->password = Hash::make($request->get('password'));
-        //     $user->update();
-        //     Alert::success('success', 'Password successfully changed');
-        //     return redirect()->back();
-
-        // }
     }
 }

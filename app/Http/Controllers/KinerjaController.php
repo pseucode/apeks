@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use \App\Models\User;
-use \App\Models\Pengaduan;
 use \App\Models\Kinerja;
 use Illuminate\Support\Facades\DB;
 

@@ -140,7 +140,7 @@
                with font-awesome or any other icon font library -->
           
             <li class="nav-item">
-              <a href="/dashboard" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+              <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -158,21 +158,21 @@
             
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/pengaduan/masuk" class="nav-link {{ request()->is('pengaduan/masuk') ? 'active' : '' }}">
+                <a href="{{ route('pengaduan.masuk') }}" class="nav-link {{ request()->is('pengaduan/masuk') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Masuk</p>
                   <span class="badge badge-info right">{{ $masuk }}</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/pengaduan/progres" class="nav-link">
+                <a href="{{ route('pengaduan.progres') }}" class="nav-link {{ request()->is('pengaduan/progres') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Progres</p>
                   <span class="badge badge-warning right">{{ $progres }}</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('pengaduan.selesai') }}" class="nav-link">
+                <a href="{{ route('pengaduan.selesai') }}" class="nav-link {{ request()->is('pengaduan/selesai') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Selesai</p>
                   <span class="badge badge-success right">{{ $selesai }}</span>
@@ -182,7 +182,7 @@
           </li>
           @if(Auth::user()->level == 'admin')
           <li class="nav-item">
-            <a href="/laporan" class="nav-link {{ request()->is('laporan') ? 'active' : '' }}">
+            <a href="{{ route('laporan') }}" class="nav-link {{ request()->is('laporan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Laporan
@@ -193,7 +193,7 @@
           @endif
           @if(Auth::user()->level == 'admin')
           <li class="nav-item">
-            <a href="/kinerja" class="nav-link {{ request()->is('kinerja') ? 'active' : '' }}">
+            <a href="{{ route('kinerja') }}" class="nav-link {{ request()->is('kinerja') ? 'active' : '' }}">
               <i class="nav-icon fa fa-signal"></i>
               <p>
                 Kinerja
@@ -204,7 +204,7 @@
           @endif
           @if(Auth::user()->level == 'admin')
           <li class="nav-item">
-            <a href="/user" class="nav-link {{ request()->is('user') ? 'active' : '' }}">
+            <a href="{{ route('user') }}" class="nav-link {{ request()->is('user') ? 'active' : '' }}">
               <i class="nav-icon far fa fa-user"></i>
               <p>
                 User

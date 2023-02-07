@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Followup;
 use App\Models\Kinerja;
 use App\Models\Pengaduan;
+use \App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class FollowupController extends Controller
@@ -152,11 +154,6 @@ class FollowupController extends Controller
                     'over_selesai' => '0 Hari'
                 ]);
 
-                // $kinerja = Kinerja::where('followup_id', $id);
-                // $kinerja->total_poin = $kinerja->poin_cek + $kinerja->poin_selesai;
-                // dd($kinerja->total_poin);
-                // $kinerja->save();
-
             }elseif(Carbon::now()->format('Y-m-d') >= $followups->updated_at->addDay(5)->format('Y-m-d')){
                 $jarak = $tgl_end2->diff($tgl_begin2);
                 if($jarak->d == 0) {
@@ -170,13 +167,6 @@ class FollowupController extends Controller
                         'over_selesai' => $jarak->d . ' Hari'
                     ]);
                 }
-
-
-                // $kinerja = Kinerja::where('followup_id', $id);
-                // $kinerja->total_poin = $kinerja->poin_cek + $kinerja->poin_selesai;
-                // dd($kinerja->total_poin);
-                // $kinerja->save();
-
             }
 
             if(!empty($request->penyelesaian)){
@@ -189,6 +179,7 @@ class FollowupController extends Controller
                     'tgl_followups' => Carbon::now()
                 ]);
             }
+
             $followups->pengaduan->signature = $signature;
             $followups->pengaduan->status = 'Menunggu Konfirmasi Sarpas';
             $followups->pengaduan->catatan = 'Telah di Tindak Lanjuti';
@@ -198,4 +189,6 @@ class FollowupController extends Controller
             return redirect()->back();
         }
     }
+
+    
 }

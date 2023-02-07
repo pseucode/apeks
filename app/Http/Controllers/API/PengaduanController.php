@@ -28,7 +28,6 @@ class PengaduanController extends Controller
             'barang' => 'required',
             'no_telp' => 'required',
             'lokasi' => 'required',
-            'tgl_aduan' => '',
             'isi_aduan' => 'required'
         ]);
 
