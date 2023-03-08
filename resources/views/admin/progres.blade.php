@@ -34,20 +34,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($followups as $followup)
+                  @foreach($pengaduans as $pengaduan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $followup->pengaduan->nama }}</td>
-                  <td>{{ $followup->pengaduan->isi_aduan }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->tgl_followups)->format('d-m-Y') }}</td>
-                  <td>{{ $followup->pengaduan->status }}</td>
-                  <td><button type="button" title="Konfirmasi" class="btn btn-sm btn-warning" href="/pengaduan/konfirmasi/{{ $followup->pengaduan->id }}" data-toggle="modal" data-target="#Konfirmasi{{ $followup->pengaduan->id }}"><i class="fa fa-list-ul text-white"></i></button>
+                  <td>{{ $pengaduan->pelapor->nama }}</td>
+                  <td>{{ $pengaduan->isi_aduan }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_followups)->format('d-m-Y') }}</td>
+                  <td>{{ $pengaduan->status }}</td>
+                  <td><button type="button" title="Konfirmasi" class="btn btn-sm btn-warning" href="/pengaduan/konfirmasi/{{ $pengaduan->id }}" data-toggle="modal" data-target="#Konfirmasi{{ $pengaduan->id }}"><i class="fa fa-list-ul text-white"></i></button>
                   </td>
                 </tr>
 
                   <!-- Modal konfrimasi -->
-                <div class="modal fade" id="Konfirmasi{{ $followup->pengaduan->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="Konfirmasi{{ $pengaduan->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -57,38 +57,38 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form action="/pengaduan/konfirmasi/{{$followup->pengaduan->id}}" method="post" enctype="multipart/form-data">
+                        <form action="/pengaduan/konfirmasi/{{$pengaduan->id}}" method="post" enctype="multipart/form-data">
                           @csrf
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="nama">Nama</label>
-                              <input type="text" class="form-control" value="{{$followup->pengaduan->nama}}" id="nama" name="nama" disabled>
+                              <input type="text" class="form-control" value="{{$pengaduan->pelapor->nama}}" id="nama" name="nama" disabled>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="isi_aduan">Keluhan</label>
-                              <input type="text" class="form-control" value="{{$followup->pengaduan->isi_aduan}}" id="isi_aduan" name="isi_aduan" disabled>
+                              <input type="text" class="form-control" value="{{$pengaduan->isi_aduan}}" id="isi_aduan" name="isi_aduan" disabled>
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="permasalahan">Permasalahan</label>
-                              <textarea rows="3" class="form-control" id="permasalahan" name="permasalahan" disabled>{{ $followup->permasalahan }}</textarea>
+                              <textarea rows="3" class="form-control" id="permasalahan" name="permasalahan" disabled>{{ $pengaduan->permasalahan }}</textarea>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="penyelesaian">Penyelesaian</label>
-                              <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" readonly required>{{ $followup->penyelesaian }}</textarea>
+                              <textarea rows="3" class="form-control" id="penyelesaian" name="penyelesaian" readonly required>{{ $pengaduan->penyelesaian }}</textarea>
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-6">
-                              @if($followup->pengaduan->signature != '')
+                              @if($pengaduan->signature != '')
                               <label for="signature">TTD Pelapor</label>
-                              <img width="220px" src="{{ $followup->pengaduan->ttd() }}" alt="">
+                              <img width="220px" src="{{ $pengaduan->ttd() }}" alt="">
                               @endif
                             </div>
                             <div class="form-group col-6">
                               <label for="pengerjaan">Pengerjaan</label>
-                              <input type="text" class="form-control" value="{{$followup->pengerjaan . '-' . $followup->user->name}}" id="pengerjaan" name="pengerjaan" disabled>
+                              <input type="text" class="form-control" value="{{$pengaduan->pengerjaan . '-' . $pengaduan->user->name}}" id="pengerjaan" name="pengerjaan" disabled>
                             </div>
                           </div>
                           <div class="modal-footer">

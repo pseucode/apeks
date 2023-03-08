@@ -15,19 +15,24 @@ class CreatePengaduansTable extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama')->nullable();
-            $table->string('jabatan')->nullable();
+            $table->string('nip')->nullable();
             $table->string('barang')->nullable();
             $table->string('lokasi')->nullable();
-            $table->string('no_telp')->nullable();
             $table->date('tgl_aduan')->nullable();
             $table->string('isi_aduan')->nullable();
+            $table->string('permasalahan')->nullable();
+            $table->string('penyelesaian')->nullable();
+            $table->date('tgl_followups')->nullable();
+            $table->string('pengerjaan')->nullable();
             $table->string('status')->nullable();
             $table->string('catatan')->nullable();
             $table->string('signature')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('pelapor_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('pelapor_id')->references('id')->on('pelapors')
             ->onDelete('set null')->onUpdate('cascade');
             
             $table->timestamps();

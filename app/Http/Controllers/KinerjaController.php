@@ -27,7 +27,7 @@ class KinerjaController extends Controller
             $query->where('status', 'Selesai');
         })->count();
         $allKasus = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
-            $query->where('status', 'Selesai');
+            $query->where('status', 'Selesai')->with('pelapor');
         })->get();
         // $kinerja = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
         //     $query->where('status', 'Selesai');

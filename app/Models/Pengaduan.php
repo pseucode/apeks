@@ -10,19 +10,19 @@ class Pengaduan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'jabatan', 'no_telp', 'barang', 'lokasi', 'tgl_aduan', 'isi_aduan', 'status', 'catatan', 'signature'];
+    protected $fillable = ['nip', 'barang', 'lokasi', 'tgl_aduan', 'isi_aduan', 'permasalahan', 'penyelesaian', 'tgl_followups', 'pengerjaan', 'status', 'catatan', 'signature', 'pelapor_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    } 
+
+    public function pelapor(){
+        return $this->belongsTo(Pelapor::class);
     }
 
     public function kinerja(){
         return $this->hasOne(Kinerja::class);
-    }
-
-    public function followup(){
-        return $this->hasOne(Followup::class);
     }
 
     public function ttd()

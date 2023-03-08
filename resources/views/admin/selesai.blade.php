@@ -24,16 +24,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($followups as $followup)
-                    @if($followup->pengaduan->status == 'Selesai')
+                  @foreach($pengaduans as $pengaduan)
+                    @if($pengaduan->status == 'Selesai')
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $followup->pengaduan->nama }}</td>
-                  <td>{{ $followup->pengaduan->isi_aduan }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->tgl_followups)->format('d-m-Y') }}</td>
-                  <td>{{ $followup->pengaduan->status }}</td>
-                  <td><a title="Detail" class="btn btn-sm btn-secondary" href="/pengaduan/selesai/{{ $followup->id }}"><i class="fa fa-list text-white"></i></a>
+                  <td>{{ $pengaduan->pelapor->nama }}</td>
+                  <td>{{ $pengaduan->isi_aduan }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_followups)->format('d-m-Y') }}</td>
+                  <td>{{ $pengaduan->status }}</td>
+                  <td><a title="Detail" class="btn btn-sm btn-secondary" href="/pengaduan/selesai/{{ $pengaduan->id }}"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
                     @endif

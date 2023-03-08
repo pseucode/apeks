@@ -14,9 +14,6 @@ class Kinerja extends Model
     public function pengaduan(){
         return $this->belongsTo(Pengaduan::class);
     }
-    public function followup(){
-        return $this->belongsTo(followup::class);
-    }
     public function user(){
         return $this->belongsTo(User::class);
     }

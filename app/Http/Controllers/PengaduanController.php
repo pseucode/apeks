@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Followup;
+use App\Models\Pelapor;
 use App\Models\Pengaduan;
 use App\Models\User;
 use Carbon\Carbon;
@@ -41,7 +42,7 @@ class PengaduanController extends Controller
 
             return view('admin.masuk', [
                 'pengaduans' => $pengaduans,
-                'users' => $users,
+                'users' => $users
             ]);
         }elseif(Auth::user()->level == 'teknisi'){
             $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->whereNotNull('catatan')->where('status', 'Sudah diTeruskan')->orderBy('tgl_aduan', 'DESC')->get();
@@ -55,18 +56,26 @@ class PengaduanController extends Controller
 
     public function tambah(Request $request){
         $this->validate($request, [
-            'nama' => 'required',
-            'jabatan' => '',
+            'nip' => 'required',
             'barang' => 'required',
-            'no_telp' => 'required',
             'lokasi' => 'required',
             'tgl_aduan' => '',
-            'isi_aduan' => 'required'
+            'isi_aduan' => 'required',
+            'pelapor_id' => ''
         ]);
-        $attr = $request->all();
-        $attr['status'] = 'Baru';
-        $attr['tgl_aduan'] = Carbon::now();
-        $pengaduans = Pengaduan::create($attr);
+
+        $split = explode(" - ", $request->nip);
+        $pelapor_id = Pelapor::select('id')->where('nip', $split[0])->first();
+        $pengaduans = Pengaduan::create([
+            'nip' => $split[0],
+            'barang' => $request->barang,
+            'lokasi' => $request->lokasi,
+            'tgl_aduan' => Carbon::now(),
+            'isi_aduan' => $request->isi_aduan,
+            'status' => 'Baru',
+            'pelapor_id' => $pelapor_id->id
+        ]);
+        Pelapor::where('nip', $split[0])->update(['no_telp' => $request->no_telp]);
 
         if($pengaduans){
             Alert::success('Sukses Tambah', 'Data berhasil ditambahkan');
@@ -82,7 +91,7 @@ class PengaduanController extends Controller
     public function forward($id, Request $request){
         $this->validate($request, [
             'catatan' => '',
-            'user' => ''
+            'user_id' => ''
         ]);
         $attr = $request->all();
 
@@ -103,26 +112,24 @@ class PengaduanController extends Controller
     }
 
     public function detail($id){
-        $followups = Followup::find($id);
+        $pengaduans = Pengaduan::find($id);
         return view('teknisi.detail', [
-            'followups' => $followups,
+            'pengaduans' => $pengaduans,
         ]);
     }
 
     public function selesai(){
 
         if(Auth::user()->level == 'admin'){
-            $followups = Followup::get();
+            $pengaduans = Pengaduan::get();
             return view('admin.selesai', [
-                'followups' => $followups,
+                'pengaduans' => $pengaduans,
             ]);
         }elseif(Auth::user()->level == 'teknisi'){
-            $followups = Followup::where('user_id', Auth::user()->id)->whereHas('pengaduan', function ($query) {
-                $query->where('status', 'Selesai');
-            })->get();
+            $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->where('status', 'Selesai')->get();
 
             return view('teknisi.selesai', [
-                'followups' => $followups,
+                'pengaduans' => $pengaduans,
             ]);
         }
     }
@@ -157,4 +164,5 @@ class PengaduanController extends Controller
         Alert::success('Sukses Hapus', 'Data berhasil dihapus');
         return redirect()->back();
     }
+
 }

@@ -42,9 +42,6 @@ class User extends Authenticatable
         return $this->hasMany(Pengaduan::class);
     }
 
-    public function followup(){
-        return $this->hasMany(Followup::class);
-    }
     public function kinerja(){
         return $this->hasOne(Kinerja::class);
     }

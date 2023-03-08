@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/signatures
+/public/file_pelapor
 /storage/*.key
 /vendor
 .env

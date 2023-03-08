@@ -24,27 +24,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($followups as $followup)
+                  @foreach($pengaduans as $pengaduan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $followup->pengaduan->nama }}</td>
-                  <td>{{ $followup->pengaduan->no_telp }}</td>
-                  <td>{{ $followup->pengaduan->isi_aduan }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
-                  <td>{{ $followup->pengaduan->status }}</td>
+                  <td>{{ $pengaduan->pelapor->nama }}</td>
+                  <td>{{ $pengaduan->pelapor->no_telp }}</td>
+                  <td>{{ $pengaduan->isi_aduan }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
+                  <td>{{ $pengaduan->status }}</td>
                   <td> 
-                    @if($followup->pengaduan->status == 'Progres') 
-                        @if(empty($followup->penyelesaian))
-                        <button type="button" title="Update Laporan" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ModalUpdate{{ $followup->id }}"><i class="fa fa-edit text-white"></i></button>
+                    @if($pengaduan->status == 'Progres') 
+                        @if(empty($pengaduan->penyelesaian))
+                        <button type="button" title="Update Laporan" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ModalUpdate{{ $pengaduan->id }}"><i class="fa fa-edit text-white"></i></button>
                         @endif
-                    <button type="button" title="Upload Signature" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $followup->id }}"><i class="fa fa-paint-brush text-white"></i></button>
+                    <button type="button" title="Upload Signature" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $pengaduan->id }}"><i class="fa fa-paint-brush text-white"></i></button>
                     @endif
-                   <a href="/pengaduan/detail/{{ $followup->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
+                   <a href="/pengaduan/detail/{{ $pengaduan->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
 
                 <!-- Modal Update -->
-                <div class="modal fade" id="ModalUpdate{{$followup->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ModalUpdate{{$pengaduan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -54,7 +54,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <form action="/pengaduan/progres/update/{{$followup->id}}" method="post" enctype="multipart/form-data">
+                          <form action="/pengaduan/progres/update/{{$pengaduan->id}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-row">
                               <div class="form-group col-md-6">
@@ -73,7 +73,7 @@
                   </div>
 
                 <!-- Modal Signature-->
-                <div class="modal fade" id="CustomerSignature{{ $followup->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="CustomerSignature{{ $pengaduan->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -83,12 +83,12 @@
                         </button>
                       </div>
                         <div class="modal-body">
-                          <form action="{{ route('simpan.ttd', $followup->id) }}" method="post">
+                          <form action="{{ route('simpan.ttd', $pengaduan->id) }}" method="post">
                             @csrf
                               <div class="form-row">
                                 <div class="form-group col-md-12">
-                                  <label class="" for="sig{{ $followup->id }}">Tanda Tangan Pelapor</label>
-                                  <div id="sig{{ $followup->id }}" class="sig"></div>
+                                  <label class="" for="sig{{ $pengaduan->id }}">Tanda Tangan Pelapor</label>
+                                  <div id="sig{{ $pengaduan->id }}" class="sig"></div>
                                   <textarea id="signature64" class="signature64" name="signed" style="display: none" required></textarea>
                                 </div>
                               </div>

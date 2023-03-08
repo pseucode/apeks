@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/templatemo-lava.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 
 </head>
 
@@ -107,12 +108,8 @@
                             <form action="{{ route('pengaduan.tambah') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="nama">Nama Pelapor : </label>
-                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nama">Jabatan : </label>
-                                <input type="text" name="jabatan" class="form-control" id="jabatan" placeholder="Guru/Karyawan" required>
+                                <label for="nip">NIP </label>
+                                <input type="text" name="nip" class="form-control" id="nip" placeholder="Masukkan NIP" required>
                             </div>
                             <div class="form-group">
                                 <label for="no_telp">No. Telp : </label>
@@ -208,7 +205,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('js/jquery-2.1.0.min.js') }}"></script>
-
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('js/popper.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -225,5 +222,18 @@
     <!-- SweetAlert -->
     <script src="{{ asset('sweetAlert/sweetalert2.all.js') }}"></script>
     @include('sweetalert::alert')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $( "#nip" ).autocomplete({
+                source: "{{ route('autocomplete') }}",
+                minLength: 8,
+                select: function(event, ui) {
+                    $('#nip').val(ui.item.value);
+                }
+            });
+        });
+      
+    </script>
 </body>
 </html>

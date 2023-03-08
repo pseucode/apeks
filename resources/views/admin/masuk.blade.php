@@ -21,14 +21,14 @@
                   <th>Tgl. Aduan</th>
                   <th>Isi Aduan</th>
                   <th>Status</th>
-                  <th>Aksi</th>
+                  <th>Aksi</th>                  
                 </tr>
                 </thead>
                 <tbody>
                   @foreach($pengaduans as $pengaduan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $pengaduan->nama }}</td>
+                  <td>{{ $pengaduan->pelapor->nama ?? 'None' }}</td>
                   <td>{{ $pengaduan->barang }}</td>
                   <td>{{ $pengaduan->lokasi }}</td>
                   <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
@@ -98,17 +98,17 @@
                       <div class="modal-body">
                         <div class="row">
                           <div class="col-4"> Nama </div>
-                          <div class="col-8"> : {{$pengaduan->nama}}</div>
+                          <div class="col-8"> : {{$pengaduan->pelapor->nama}}</div>
                         </div>
                         <hr>
                         <div class="row">
                           <div class="col-4"> No. Telp </div>
-                          <div class="col-8"> : {{$pengaduan->no_telp}}</div>
+                          <div class="col-8"> : {{$pengaduan->pelapor->no_telp}}</div>
                         </div>
                         <hr>
                         <div class="row">
                           <div class="col-4"> Jabatan </div>
-                          <div class="col-8"> : {{$pengaduan->jabatan}}</div>
+                          <div class="col-8"> : {{$pengaduan->pelapor->jabatan}}</div>
                         </div>
                         <hr>
                         <div class="row">

@@ -42,7 +42,7 @@
                   @foreach($allKasus as $kasus)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $kasus->pengaduan->nama }}</td>
+                  <td>{{ $kasus->pengaduan->pelapor->nama }}</td>
                   <td>{{ $kasus->pengaduan->isi_aduan }}</td>
                   <td>{{ $kasus->poin_cek . " Poin" }}</td>
                   <td>{{ $kasus->poin_selesai . " Poin" }}</td>

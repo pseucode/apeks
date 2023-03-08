@@ -181,6 +181,26 @@
             </ul>
           </li>
           @if(Auth::user()->level == 'admin')
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-database"></i>
+              <p>
+                Data Master
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('pelapor') }}" class="nav-link {{ request()->is('pelapor/index') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pelapor</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+          @if(Auth::user()->level == 'admin')
           <li class="nav-item">
             <a href="{{ route('laporan') }}" class="nav-link {{ request()->is('laporan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-chart-pie"></i>

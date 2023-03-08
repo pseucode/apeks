@@ -21,13 +21,10 @@ class CreateKinerjasTable extends Migration
             $table->string('over_selesai')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('pengaduan_id')->nullable();
-            $table->unsignedInteger('followup_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('set null')->onUpdate('cascade');
             $table->foreign('pengaduan_id')->references('id')->on('pengaduans')
-            ->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('followup_id')->references('id')->on('followups')
             ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });

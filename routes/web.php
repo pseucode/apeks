@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('luar.index');
 });
+Route::get('autocomplete', 'App\Http\Controllers\PelaporController@autocompleteNIP')->name('autocomplete');
 Route::post('/pengaduan/tambah', [App\Http\Controllers\PengaduanController::class, 'tambah'])->name('pengaduan.tambah');
-
 
 Auth::routes();
 
@@ -52,6 +52,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/user/reset/{id}', [App\Http\Controllers\UserController::class, 'reset']);
         Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'showLaporan'])->name('laporan');
         Route::post('/laporan/pdf', [App\Http\Controllers\LaporanController::class, 'cetakLaporanPDF'])->name('laporanPDF');
+
+        Route::get('/pelapor/index', [App\Http\Controllers\PelaporController::class, 'index'])->name('pelapor');
+        Route::post('/pelapor/tambah/', [App\Http\Controllers\PelaporController::class, 'tambah'])->name('pelapor.tambah');
+        Route::post('/pelapor/edit/{id}', [App\Http\Controllers\PelaporController::class, 'edit'])->name('pelapor.edit');
+        Route::post('/pelapor/import', [App\Http\Controllers\PelaporController::class, 'importExcel'])->name('pelapor.import');
+        Route::get('/pelapor/hapus/{id}', [App\Http\Controllers\PelaporController::class, 'hapus'])->name('pelapor.hapus');
     });
     
 });
