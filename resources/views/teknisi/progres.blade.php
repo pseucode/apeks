@@ -39,7 +39,7 @@
                         @endif
                     <button type="button" title="Upload Signature" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#CustomerSignature{{ $pengaduan->id }}"><i class="fa fa-paint-brush text-white"></i></button>
                     @endif
-                   <a href="/pengaduan/detail/{{ $pengaduan->id }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
+                   <a href="{{ route('pengaduan.detail', $pengaduan->id ) }}" title="Detail" class="btn btn-sm btn-secondary"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
 
@@ -54,7 +54,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <form action="/pengaduan/progres/update/{{$pengaduan->id}}" method="post" enctype="multipart/form-data">
+                          <form action="{{ route('update.penyelesaian', $pengaduan->id ) }}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-row">
                               <div class="form-group col-md-6">

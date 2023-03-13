@@ -51,7 +51,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form action="/pengaduan/masuk/update/{{$pengaduan->id}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('update.permasalahan', $pengaduan->id ) }}" method="post" enctype="multipart/form-data">
                           {{csrf_field()}}
                           <div class="form-row">
                             <div class="form-group col-md-6">

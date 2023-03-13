@@ -55,7 +55,7 @@
                       </div>
                       <div class="modal-body">
                         <!-- form -->
-                        <form action="/pengaduan/forward/{{ $pengaduan->id }}" method="POST">
+                        <form action="{{ route('pengaduan.forward', $pengaduan->id) }}" method="POST">
                           @csrf
                           <div class="form-row">
                             <div class="form-group col-md-6">
@@ -144,7 +144,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                        <a href="/pengaduan/hapus/{{$pengaduan->id}}" class="btn btn-primary">Iya</a>
+                        <a href="{{ route('pengaduan.hapus', $pengaduan->id) }}" class="btn btn-primary">Iya</a>
                       </div>
                     </div>
                   </div>

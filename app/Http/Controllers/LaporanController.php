@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Followup;
 use App\Models\Pengaduan;
-use Carbon\Carbon;
 use PDF;
 
 class LaporanController extends Controller

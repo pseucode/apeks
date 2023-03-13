@@ -41,7 +41,7 @@
                   @foreach($pengaduans as $pengaduan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $pengaduan->nama }}</td>
+                  <td>{{ $pengaduan->pelapor->nama }}</td>
                   <td>{{ $pengaduan->barang }}</td>
                   <td>{{ $pengaduan->lokasi }}</td>
                   <td>{{ $pengaduan->isi_aduan }}</td>

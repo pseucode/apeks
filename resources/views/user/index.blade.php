@@ -97,7 +97,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                        <a href="/user/reset/{{$user->id}}" class="btn btn-primary">Iya</a>
+                        <a href="{{ route('user.reset', $user->id)}}" class="btn btn-primary">Iya</a>
                       </div>
                     </div>
                   </div>
@@ -119,7 +119,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                        <a href="/user/hapus/{{$user->id}}" class="btn btn-primary">Iya</a>
+                        <a href="{{ route('user.hapus', $user->id)}}" class="btn btn-primary">Iya</a>
                       </div>
                     </div>
                   </div>

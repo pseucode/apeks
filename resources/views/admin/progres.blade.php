@@ -42,7 +42,7 @@
                   <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
                   <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_followups)->format('d-m-Y') }}</td>
                   <td>{{ $pengaduan->status }}</td>
-                  <td><button type="button" title="Konfirmasi" class="btn btn-sm btn-warning" href="/pengaduan/konfirmasi/{{ $pengaduan->id }}" data-toggle="modal" data-target="#Konfirmasi{{ $pengaduan->id }}"><i class="fa fa-list-ul text-white"></i></button>
+                  <td><button type="button" title="Konfirmasi" class="btn btn-sm btn-warning"  data-toggle="modal" data-target="#Konfirmasi{{ $pengaduan->id }}"><i class="fa fa-list-ul text-white"></i></button>
                   </td>
                 </tr>
 
@@ -57,7 +57,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form action="/pengaduan/konfirmasi/{{$pengaduan->id}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('pengaduan.konfirmasi', $pengaduan->id) }}" method="post" enctype="multipart/form-data">
                           @csrf
                           <div class="form-row">
                             <div class="form-group col-md-6">

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Followup;
 use App\Models\Pelapor;
 use App\Models\Pengaduan;
 use App\Models\User;
@@ -13,7 +12,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PengaduanController extends Controller
 {
-    private $catatan;
 
     public function dashboard(){
         $masuk = Pengaduan::where('status', 'Baru')->count();

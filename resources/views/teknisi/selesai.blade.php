@@ -7,7 +7,7 @@
         <div class="col-12">
           <div class="card shadow mt-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-dark card-title">Pengaduan Masuk</h6>
+                <h6 class="m-0 font-weight-bold text-dark card-title">Pengaduan Selesai</h6>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -24,15 +24,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($followups as $followup)
+                  @foreach($pengaduans as $pengaduan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $followup->pengaduan->nama }}</td>
-                  <td>{{ $followup->pengaduan->isi_aduan }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
-                  <td>{{ \Carbon\Carbon::parse($followup->tgl_followups)->format('d-m-Y') }}</td>
-                  <td>{{ $followup->pengaduan->status }}</td>
-                  <td><a title="Detail" class="btn btn-sm btn-secondary" href="/pengaduan/detail/{{ $followup->id }}"><i class="fa fa-list text-white"></i></a>
+                  <td>{{ $pengaduan->pelapor->nama }}</td>
+                  <td>{{ $pengaduan->isi_aduan }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_aduan)->format('d-m-Y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_followups)->format('d-m-Y') }}</td>
+                  <td>{{ $pengaduan->status }}</td>
+                  <td><a title="Detail" class="btn btn-sm btn-secondary" href="{{ route('pengaduan.detail', $pengaduan->id) }}"><i class="fa fa-list text-white"></i></a>
                   </td>
                 </tr>
         

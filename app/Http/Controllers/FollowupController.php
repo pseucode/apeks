@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Followup;
 use App\Models\Kinerja;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
