@@ -116,7 +116,7 @@
                                 <input type="text" name="no_telp" class="form-control" id="no_telp" placeholder="081xxxxxxxxx" required>
                             </div>
                             <div class="form-group">
-                                <label for="barang">Barang : </label>
+                                <label for="barang">Sarpras yg dilaporkan : </label>
                                 <input type="text" name="barang" class="form-control" id="barang" placeholder="Komputer, Printer, Mouse" required>
                             </div>
                             <div class="form-group">
