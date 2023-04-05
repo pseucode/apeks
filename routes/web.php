@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('luar.index');
-});
+// Route::get('/', function () {
+//     return view('luar.index');
+// });
+Route::get('/', [App\Http\Controllers\PengaduanController::class, 'cekLaporan']);
 Route::get('autocomplete', 'App\Http\Controllers\PelaporController@autocompleteNIP')->name('autocomplete');
 Route::post('/pengaduan/tambah', [App\Http\Controllers\PengaduanController::class, 'tambah'])->name('pengaduan.tambah');
 
@@ -27,7 +28,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/dashboard', [App\Http\Controllers\PengaduanController::class, 'dashboard'])->name('dashboard');
-
+    
     Route::get('/pengaduan/masuk', [App\Http\Controllers\PengaduanController::class, 'masuk'])->name('pengaduan.masuk');
     Route::post('/pengaduan/forward/{id}', [App\Http\Controllers\PengaduanController::class, 'forward'])->name('pengaduan.forward');
 

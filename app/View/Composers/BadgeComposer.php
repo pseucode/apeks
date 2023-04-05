@@ -22,7 +22,7 @@ class BadgeComposer
                 $view->with('progres',$progres);
                 $view->with('selesai', $selesai);
             }elseif(Auth::user()->level == 'teknisi'){
-                $masuk = Pengaduan::where('status', 'Sudah diTeruskan')->whereHas('user', function($query) {
+                $masuk = Pengaduan::where('status', 'Dalam Antrian')->whereHas('user', function($query) {
                     $query->where('id', Auth::user()->id);
                 })->count();
                 $progres = Pengaduan::where('status', 'Progres')->whereHas('user', function($query) {

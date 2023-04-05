@@ -37,7 +37,7 @@
                   <td>@if($pengaduan->status == 'Baru')
                     <button type="button" title="Forward" class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalForward{{$pengaduan->id}}"><i class="fa fa-share"></i></button>
                   @endif
-                  @if($pengaduan->status == 'Sudah diTeruskan')
+                  @if($pengaduan->status == 'Dalam Antrian')
                   <button type="button" title="Detail" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#ModalDetail{{$pengaduan->id}}"><i class="fa fa-list text-white"></i></button>
                   @endif
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$pengaduan->id}}"><i class="fa fa-trash"></i></button>

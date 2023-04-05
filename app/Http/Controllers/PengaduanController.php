@@ -32,10 +32,18 @@ class PengaduanController extends Controller
         ]);
     }
 
+    public function cekLaporan(){
+        $getLaporan = Pengaduan::orderBy('created_at', 'desc')->get();
+
+        return view('luar.index', [
+            'getLaporan' => $getLaporan
+        ]);
+    }
+
     public function masuk(){
 
         if(Auth::user()->level == 'admin'){
-            $pengaduans = Pengaduan::where('status', 'Baru')->orWhere('status', 'Sudah diTeruskan')->orderBy('status', 'ASC')->orderBy('tgl_aduan', 'DESC')->get();
+            $pengaduans = Pengaduan::where('status', 'Baru')->orWhere('status', 'Dalam Antrian')->orderBy('status', 'ASC')->orderBy('created_at', 'DESC')->get();
             $users = User::all();
 
             return view('admin.masuk', [
@@ -43,10 +51,10 @@ class PengaduanController extends Controller
                 'users' => $users
             ]);
         }elseif(Auth::user()->level == 'teknisi'){
-            $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->whereNotNull('catatan')->where('status', 'Sudah diTeruskan')->orderBy('tgl_aduan', 'DESC')->get();
+            $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->whereNotNull('catatan')->where('status', 'Dalam Antrian')->orderBy('tgl_aduan', 'DESC')->get();
 
             return view('teknisi.masuk', [
-                'pengaduans' => $pengaduans,
+                'pengaduans' => $pengaduans
             ]);
         }
         
@@ -56,6 +64,7 @@ class PengaduanController extends Controller
         $this->validate($request, [
             'nip' => 'required',
             'barang' => 'required',
+            'no_telp' => 'required',
             'lokasi' => 'required',
             'tgl_aduan' => '',
             'isi_aduan' => 'required',
@@ -64,24 +73,27 @@ class PengaduanController extends Controller
 
         $split = explode(" - ", $request->nip);
         $pelapor_id = Pelapor::select('id')->where('nip', $split[0])->first();
-        $pengaduans = Pengaduan::create([
-            'nip' => $split[0],
-            'barang' => $request->barang,
-            'lokasi' => $request->lokasi,
-            'tgl_aduan' => Carbon::now(),
-            'isi_aduan' => $request->isi_aduan,
-            'status' => 'Baru',
-            'pelapor_id' => $pelapor_id->id
-        ]);
-        Pelapor::where('nip', $split[0])->update(['no_telp' => $request->no_telp]);
+        if(!empty($pelapor_id)){
+            $pengaduans = Pengaduan::create([
+                'nip' => $split[0],
+                'barang' => $request->barang,
+                'lokasi' => $request->lokasi,
+                'tgl_aduan' => Carbon::now(),
+                'isi_aduan' => $request->isi_aduan,
+                'status' => 'Baru',
+                'pelapor_id' => $pelapor_id->id
+            ]);
+            Pelapor::where('nip', $split[0])->update(['no_telp' => $request->no_telp]);
+        }else{
+            Alert::error('Gagal', 'NIP tidak ada di data');
+            return redirect()->back();
+        }
 
         if($pengaduans){
             Alert::success('Sukses Tambah', 'Data berhasil ditambahkan');
-            // alihkan halaman ke halaman pegawai
             return redirect()->back();
         }else {
             Alert::error('Gagal Tambah', 'Data Gagal ditambahkan');
-            // alihkan halaman ke halaman pegawai
             return redirect()->back();
         }
     }
@@ -95,7 +107,7 @@ class PengaduanController extends Controller
 
         if($attr){
             $peng = Pengaduan::find($id);
-            $peng->status = 'Sudah diTeruskan';
+            $peng->status = 'Dalam Antrian';
             $peng->user_id = $attr['user_id'];
             $peng->catatan = $attr['catatan'];
             $peng->save();

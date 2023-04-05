@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+
 </head>
 
 <body>
@@ -53,7 +57,7 @@
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
                             <li class="scroll-to-section"><a href="#form-pengaduan" class="menu-item">Pengaduan</a></li>
-                            <li class="scroll-to-section"><a href="#unsur-pengaduan" class="menu-item">Unsur Pengaduan</a>
+                            <li class="scroll-to-section"><a href="#cek-laporan" class="menu-item">Cek Laporan</a>
                             </li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                         </ul>
@@ -117,7 +121,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="barang">Sarpras yg dilaporkan : </label>
-                                <input type="text" name="barang" class="form-control" id="barang" placeholder="Komputer, Printer, Mouse" required>
+                                <input type="text" name="barang" class="form-control" id="barang" placeholder="Masukkan Sarpras" required>
                             </div>
                             <div class="form-group">
                                 <label for="lokasi">Lokasi : </label>
@@ -138,43 +142,58 @@
     <!-- ***** Features Big Item End ***** -->
 
     <div class="right-image-decor"></div>
-    <div class="unsur-pengaduan-area" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s"></div>
 
     <!-- ***** Testimonials Starts ***** -->
-    <section class="section" id="unsur-pengaduan">
+    <section class="section" id="cek-laporan">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="center-heading">
-                        <h2>Unsur <em>Pengaduan</em></h2>
-                        <p>Pengaduan Anda akan mudah ditindak lanjuti apabila memenuhi unsur sebagai berikut : </p>
+                        <h2>Cek <em>Laporanmu</em></h2>
                     </div>
                 </div>
             </div>
-            <div class="row" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                <div class="col-lg-4">
-                    <h3 class="text-unsur"><em>What</em></h3>
-                    <p>Berupa informasi mengenai suatu hal yang tidak berfungsi semestinya. <br> (misal : komputer)</p> <br>
+            <div class="row">
+                <div class="col-12">
+                  <div class="card shadow mt-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-dark card-title">List Laporan</h6>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Isi Laporan</th>
+                          <th>Tgl. Laporan</th>
+                          <th>Nama Teknisi</th>
+                          <th>Tgl. Followup</th>
+                          <th>Status</th>                
+                        </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($getLaporan as $laporan)
+                        <tr>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $laporan->pelapor->nama }}</td>
+                          <td>{{ $laporan->isi_aduan }}</td>
+                          <td>{{ \Carbon\Carbon::parse($laporan->tgl_aduan)->format('d-m-Y') }}</td>
+                          <td>{{ $laporan->user->name ?? 'Belum Tersedia' }}</td>
+                          <td>@if(empty($laporan->tgl_followups))
+                            {{ '-' }}
+                            @else
+                            {{ \Carbon\Carbon::parse($laporan->tgl_followups)->format('d-m-Y') }}
+                            @endif
+                          </td>
+                          <td>{{ $laporan->status }}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                      </table>
+                    </div>
                 </div>
-                <div class="col-lg-4 enter">
-                    <h3 class="text-unsur"><em>Who</em></h3>
-                    <p>Siapa nama pelapor yang membuat pengaduan. <br> (misal : Fathur Enggaryansyah)</p>
-                </div>
-            </div>
-            <div class="row" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                <div class="col-lg-4">
-                    <h3 class="text-unsur"><em>Where</em></h3>
-                    <p>Lokasi terjadinya Kerusakan tersebut. <br> (misal : Ruang D. 101)</p> <br>
-                </div>
-                <div class="col-lg-4 enter">
-                    <h3 class="text-unsur"><em>When</em></h3>
-                    <p>Waktu terjadinya kerusakan tersebut. <br> (misal : pada tanggal 00 bulan XX tahun 0000)</p>
-                </div>
-            </div>
-            <div class="row" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                <div class="col-lg-4">
-                    <h3 class="text-unsur"><em>How</em></h3>
-                    <p>Berisi informasi terkait detail permasalahan yang ditemukan (misal : komputer mati ketika di klik power on)</p>
                 </div>
             </div>
         </div>
@@ -216,6 +235,11 @@
     <script src="{{ asset('js/waypoints.min.js') }}"></script>
     <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
     <script src="{{ asset('js/imgfix.min.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 
     <!-- Global Init -->
     <script src="{{ asset('js/custom.js') }}"></script>
@@ -233,7 +257,13 @@
                 }
             });
         });
-      
+
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+  });
     </script>
 </body>
 </html>

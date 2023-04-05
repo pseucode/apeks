@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\Pelapor;
 use Carbon\Carbon;
 
 class PengaduanController extends Controller
@@ -23,20 +24,28 @@ class PengaduanController extends Controller
 
     function tambah(Request $request){
         $this->validate($request, [
-            'nama' => 'required',
-            'jabatan' => '',
+            'nip' => 'required',
             'barang' => 'required',
-            'no_telp' => 'required',
             'lokasi' => 'required',
-            'isi_aduan' => 'required'
+            'tgl_aduan' => '',
+            'isi_aduan' => 'required',
+            'pelapor_id' => ''
         ]);
 
-        $attr = $request->all();
-        $attr['status'] = 'Baru';
-        $attr['tgl_aduan'] = Carbon::now();
-
-        $Pengaduans = Pengaduan::create($attr);
-        return response()->json(['msg' => 'Data created', 'data' => $Pengaduans], 200);
+        $pelapor_id = Pelapor::where('nip', $request->nip)->first();
+        if(!empty($pelapor_id)){
+            $pengaduans = Pengaduan::create([
+                'nip' => $request->nip,
+                'barang' => $request->barang,
+                'lokasi' => $request->lokasi,
+                'tgl_aduan' => Carbon::now(),
+                'isi_aduan' => $request->isi_aduan,
+                'status' => 'Baru',
+                'pelapor_id' => $pelapor_id->id
+            ]);
+            Pelapor::where('nip', $request->nip)->update(['no_telp' => $request->no_telp]);
+            return response()->json(['msg' => 'Data created', 'data' => $pengaduans], 200);
+        }
     }
 
     function forward($id, Request $request){
@@ -47,7 +56,7 @@ class PengaduanController extends Controller
         $attr = $request->all();
 
         $pengaduans = Pengaduan::find($id);
-        $pengaduans->status = 'Sudah diTeruskan';
+        $pengaduans->status = 'Dalam Antrian';
         $pengaduans->user_id = $attr['user_id'];
         $pengaduans->catatan = $attr['catatan'];
         $pengaduans->save();
