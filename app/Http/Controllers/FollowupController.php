@@ -96,7 +96,7 @@ class FollowupController extends Controller
 
         if(Auth::user()->level == 'admin'){
 
-            $pengaduans = Pengaduan::where('status', 'Progres')->orWhere('status', 'Menunggu Konfirmasi Sarpas')->orderBy('tgl_aduan', 'DESC')->get();
+            $pengaduans = Pengaduan::where('status', 'Progres')->orWhere('status', 'Menunggu Konfirmasi Sarpras')->orderBy('tgl_aduan', 'DESC')->get();
     
             return view('admin.progres', [
                 'pengaduans' => $pengaduans            
@@ -105,7 +105,7 @@ class FollowupController extends Controller
         }elseif(Auth::user()->level == 'teknisi'){
             $pengaduans = Pengaduan::where('user_id', Auth::user()->id)->where(function($query) {
                 $query->where('status','Progres')
-                        ->orWhere('status','Menunggu Konfirmasi Sarpas')
+                        ->orWhere('status','Menunggu Konfirmasi Sarpras')
                         ->orderBy('tgl_aduan', 'DESC');
                     })->get();
             
@@ -172,7 +172,7 @@ class FollowupController extends Controller
             }
 
             $pengaduans->signature = $signature;
-            $pengaduans->status = 'Menunggu Konfirmasi Sarpas';
+            $pengaduans->status = 'Menunggu Konfirmasi Sarpras';
             $pengaduans->catatan = 'Telah di Tindak Lanjuti';
             $pengaduans->save();
 
