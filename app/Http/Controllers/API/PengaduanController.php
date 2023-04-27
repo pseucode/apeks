@@ -69,4 +69,10 @@ class PengaduanController extends Controller
         $Pengaduans->delete();
         return response()->json(['msg' => 'Data deleted'], 200);
     }
+
+    function cekLaporan(){
+        $getLaporan = Pengaduan::orderBy('created_at', 'desc')->get();
+
+        return response()->json(['msg' => 'Data retrieved', 'data' => $getLaporan], 200);        
+    }
 }

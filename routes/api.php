@@ -24,3 +24,4 @@ Route::get('pengaduan/teknisi', [PengaduanController::class, 'indexTeknisi']);
 Route::post('pengaduan/tambah', [PengaduanController::class, 'tambah']);
 Route::put('Pengaduan/forward/{id}', [PengaduanController::class, 'forward']);
 Route::delete('pengaduan/hapus/{id}', [PengaduanController::class, 'hapus']);
+Route::get('pengaduan/cek', [PengaduanController::class, 'cekLaporan']);
