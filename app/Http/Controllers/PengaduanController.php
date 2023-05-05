@@ -33,7 +33,10 @@ class PengaduanController extends Controller
     }
 
     public function cekLaporan(){
-        $getLaporan = Pengaduan::orderBy('created_at', 'desc')->get();
+        // $getLaporan = Pengaduan::orderBy('created_at', 'desc')->get();
+        $getLaporan = Pengaduan::select('pelapors.nama', 'isi_aduan', 'tgl_aduan', 'users.name', 'tgl_followups', 'status')
+        ->join('pelapors', 'pelapors.id', '=', 'pengaduans.pelapor_id')
+        ->join('users', 'users.id', '=', 'pengaduans.user_id')->get();
 
         return view('luar.index', [
             'getLaporan' => $getLaporan

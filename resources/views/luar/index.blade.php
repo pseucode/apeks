@@ -177,10 +177,10 @@
                           @foreach($getLaporan as $laporan)
                         <tr>
                           <td>{{ $loop->iteration }}</td>
-                          <td>{{ $laporan->pelapor->nama }}</td>
+                          <td>{{ $laporan->nama }}</td>
                           <td>{{ $laporan->isi_aduan }}</td>
                           <td>{{ \Carbon\Carbon::parse($laporan->tgl_aduan)->format('d-m-Y') }}</td>
-                          <td>{{ $laporan->user->name ?? 'Belum Tersedia' }}</td>
+                          <td>{{ $laporan->name ?? 'Belum Tersedia' }}</td>
                           <td>@if(empty($laporan->tgl_followups))
                             {{ '-' }}
                             @else

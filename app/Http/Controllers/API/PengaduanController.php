@@ -25,6 +25,7 @@ class PengaduanController extends Controller
     function tambah(Request $request){
         $this->validate($request, [
             'nip' => 'required',
+			'no_telp' => '',
             'barang' => 'required',
             'lokasi' => 'required',
             'tgl_aduan' => '',
@@ -36,6 +37,7 @@ class PengaduanController extends Controller
         if(!empty($pelapor_id)){
             $pengaduans = Pengaduan::create([
                 'nip' => $request->nip,
+				'no_telp' => $request->no_telp,
                 'barang' => $request->barang,
                 'lokasi' => $request->lokasi,
                 'tgl_aduan' => Carbon::now(),
@@ -71,7 +73,9 @@ class PengaduanController extends Controller
     }
 
     function cekLaporan(){
-        $getLaporan = Pengaduan::orderBy('created_at', 'desc')->get();
+        $getLaporan = Pengaduan::select('pelapors.nama', 'isi_aduan', 'tgl_aduan', 'users.name', 'tgl_followups', 'status')
+        ->join('pelapors', 'pelapors.id', '=', 'pengaduans.pelapor_id')
+        ->join('users', 'users.id', '=', 'pengaduans.user_id')->get();
 
         return response()->json(['msg' => 'Data retrieved', 'data' => $getLaporan], 200);        
     }
