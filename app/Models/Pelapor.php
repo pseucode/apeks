@@ -11,6 +11,6 @@ class Pelapor extends Model
     protected $fillable = ['nip', 'nama', 'jabatan', 'jns_kelamin', 'no_telp'];
 
     public function pengaduan(){
-        return $this->hasMany(Pengaduan::class);
+        return $this->hasMany(Pengaduan::class, 'nip', 'nip');
     }
 }

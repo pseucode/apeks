@@ -41,7 +41,7 @@ class PelaporController extends Controller
 			}
 		}
 
-		public function edit(Request $request, $id){
+		public function edit(Request $request){
 			$this->validate($request, [
 				'nip' => 'required',
 				'nama' => 'required', 
@@ -50,13 +50,13 @@ class PelaporController extends Controller
 				'no_telp' => 'required'
 			]);
 
-			$pelapor = Pelapor::find($id);
-			$pelapor->nip = $request->nip;
-			$pelapor->nama = $request->nama;
-			$pelapor->jabatan = $request->jabatan;
-			$pelapor->jns_kelamin = $request->jns_kelamin;
-			$pelapor->no_telp = $request->no_telp;
-			$pelapor->save();
+			$pelapor = Pelapor::where('nip', '=', $request->nip)->update([
+				'nip' => $request->nip,
+				'nama' => $request->nama,
+				'jabatan' => $request->jabatan,
+				'jns_kelamin' => $request->jns_kelamin,
+				'no_telp' => $request->no_telp
+			]);
 			
 			if($pelapor){
 				Alert::success('Sukses Edit', 'Data berhasil Diupdate');
@@ -92,10 +92,13 @@ class PelaporController extends Controller
 		return redirect()->back();
     }
 
-		public function hapus($id){
-			Pelapor::find($id)->delete();
-			Alert::success('Sukses Hapus', 'Data berhasil dihapus');
-			return redirect()->back();
+		public function hapus(Request $request){
+			$hapus = Pelapor::where('nip', '=', $request->nip)->delete();
+
+			if($hapus){
+				Alert::success('Sukses Hapus', 'Data berhasil dihapus');
+				return redirect()->back();
+			}
 
 		}
 
@@ -107,7 +110,7 @@ class PelaporController extends Controller
 									->get();
 			$results = [];
 			foreach($data as $row) {
-					$results[] = ['id' => $row->id, 'value' => $row->nip. ' - ' .$row->nama];
+					$results[] = ['value' => $row->nip. ' - ' .$row->nama];
 			}
 			return response()->json($results);
     }

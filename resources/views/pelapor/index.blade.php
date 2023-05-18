@@ -116,13 +116,13 @@
                   <td>{{ $pelapor->jns_kelamin }}</td>
                   <td>{{ $pelapor->no_telp }}</td>
                   <td>
-                    <button type="button" title="Update" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ModalEdit{{$pelapor->id}}"><i class="fa fa-edit text-white"></i></button> 
-                    <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$pelapor->id}}"><i class="fa fa-trash text-white"></i></button>
+                    <button type="button" title="Update" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#ModalEdit{{$pelapor->nip}}"><i class="fa fa-edit text-white"></i></button> 
+                    <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$pelapor->nip}}"><i class="fa fa-trash text-white"></i></button>
                   </td>
                 </tr>
 
               <!-- Modal Edit -->
-              <div class="modal fade" id="ModalEdit{{$pelapor->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="ModalEdit{{$pelapor->nip}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -132,7 +132,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form action="{{route('pelapor.edit', $pelapor->id)}}" method="post" enctype="multipart/form-data">
+                      <form action="{{route('pelapor.edit', $pelapor->nip)}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-row">
                           <div class="form-group col-md-6">
@@ -176,7 +176,7 @@
               <!-- End Modal Edit -->
 
                 <!-- Modal delete-->
-                <div class="modal fade" id="ModalDelete{{$pelapor->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ModalDelete{{$pelapor->nip}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -190,7 +190,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                        <a href="{{ route('pelapor.hapus', $pelapor->id) }}" class="btn btn-primary">Iya</a>
+                        <a href="{{ route('pelapor.hapus', $pelapor->nip) }}" class="btn btn-primary">Iya</a>
                       </div>
                     </div>
                   </div>

@@ -18,7 +18,7 @@ class Pengaduan extends Model
     } 
 
     public function pelapor(){
-        return $this->belongsTo(Pelapor::class);
+        return $this->belongsTo(Pelapor::class, 'nip', 'nip');
     }
 
     public function kinerja(){

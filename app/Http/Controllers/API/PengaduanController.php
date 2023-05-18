@@ -74,8 +74,8 @@ class PengaduanController extends Controller
 
     function cekLaporan(){
         $getLaporan = Pengaduan::select('pelapors.nama', 'isi_aduan', 'tgl_aduan', 'users.name', 'tgl_followups', 'status')
-        ->join('pelapors', 'pelapors.id', '=', 'pengaduans.pelapor_id')
-        ->join('users', 'users.id', '=', 'pengaduans.user_id')->get();
+        ->join('pelapors', 'pelapors.nip', '=', 'pengaduans.nip')
+        ->leftJoin('users', 'users.id', '=', 'pengaduans.user_id')->orderBy('pengaduans.created_at', 'desc')->get();
 
         return response()->json(['msg' => 'Data retrieved', 'data' => $getLaporan], 200);        
     }

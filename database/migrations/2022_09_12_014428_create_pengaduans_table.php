@@ -28,11 +28,10 @@ class CreatePengaduansTable extends Migration
             $table->string('catatan')->nullable();
             $table->string('signature')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('pelapor_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('pelapor_id')->references('id')->on('pelapors')
+            $table->foreign('nip')->references('nip')->on('pelapors')
             ->onDelete('set null')->onUpdate('cascade');
             
             $table->timestamps();

@@ -57,9 +57,9 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('/pelapor/index', [App\Http\Controllers\PelaporController::class, 'index'])->name('pelapor');
         Route::post('/pelapor/tambah/', [App\Http\Controllers\PelaporController::class, 'tambah'])->name('pelapor.tambah');
-        Route::post('/pelapor/edit/{id}', [App\Http\Controllers\PelaporController::class, 'edit'])->name('pelapor.edit');
+        Route::post('/pelapor/edit/{nip}', [App\Http\Controllers\PelaporController::class, 'edit'])->name('pelapor.edit');
         Route::post('/pelapor/import', [App\Http\Controllers\PelaporController::class, 'importExcel'])->name('pelapor.import');
-        Route::get('/pelapor/hapus/{id}', [App\Http\Controllers\PelaporController::class, 'hapus'])->name('pelapor.hapus');
+        Route::get('/pelapor/hapus/{nip}', [App\Http\Controllers\PelaporController::class, 'hapus'])->name('pelapor.hapus');
     });
     
 });

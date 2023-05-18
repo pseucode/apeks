@@ -33,10 +33,9 @@ class PengaduanController extends Controller
     }
 
     public function cekLaporan(){
-        // $getLaporan = Pengaduan::orderBy('created_at', 'desc')->get();
         $getLaporan = Pengaduan::select('pelapors.nama', 'isi_aduan', 'tgl_aduan', 'users.name', 'tgl_followups', 'status')
-        ->join('pelapors', 'pelapors.id', '=', 'pengaduans.pelapor_id')
-        ->join('users', 'users.id', '=', 'pengaduans.user_id')->get();
+        ->join('pelapors', 'pelapors.nip', '=', 'pengaduans.nip')
+        ->leftJoin('users', 'users.id', '=', 'pengaduans.user_id')->orderBy('pengaduans.created_at', 'desc')->get();
 
         return view('luar.index', [
             'getLaporan' => $getLaporan
@@ -70,21 +69,19 @@ class PengaduanController extends Controller
             'no_telp' => 'required',
             'lokasi' => 'required',
             'tgl_aduan' => '',
-            'isi_aduan' => 'required',
-            'pelapor_id' => ''
+            'isi_aduan' => 'required'
         ]);
 
         $split = explode(" - ", $request->nip);
-        $pelapor_id = Pelapor::select('id')->where('nip', $split[0])->first();
-        if(!empty($pelapor_id)){
+        $insertData = Pelapor::where('nip', $split[0])->first();
+        if(!empty($insertData)){
             $pengaduans = Pengaduan::create([
                 'nip' => $split[0],
                 'barang' => $request->barang,
                 'lokasi' => $request->lokasi,
                 'tgl_aduan' => Carbon::now(),
                 'isi_aduan' => $request->isi_aduan,
-                'status' => 'Baru',
-                'pelapor_id' => $pelapor_id->id
+                'status' => 'Baru'
             ]);
             Pelapor::where('nip', $split[0])->update(['no_telp' => $request->no_telp]);
         }else{

@@ -14,8 +14,7 @@ class CreatePelaporsTable extends Migration
     public function up()
     {
         Schema::create('pelapors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nip');
+            $table->string('nip')->primary();
             $table->string('nama');
             $table->string('jabatan')->nullable();
             $table->enum('jns_kelamin', ['L', 'P'])->nullable();
