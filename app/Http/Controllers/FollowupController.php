@@ -19,25 +19,18 @@ class FollowupController extends Controller
             'tgl_followups' => '',
             'pengerjaan' => 'required'
         ]);
-        $pengaduans = Pengaduan::find($id);      
-        $pengaduans->permasalahan = $request->permasalahan;
-        $pengaduans->tgl_followups = Carbon::now();
-        $pengaduans->pengerjaan = $request->pengerjaan;
-        $pengaduans->status = 'Progres';
-        $pengaduans->save();
+        $pengaduans = Pengaduan::find($id);
 
         $tgl_begin2 = new DateTime(Carbon::now()->format('Y-m-d'));
         $tgl_end2 = New DateTime($pengaduans->updated_at->addDay(2)->format('Y-m-d'));
 
         if(Carbon::now()->format('Y-m-d') < $pengaduans->updated_at->addDay(2)->format('Y-m-d')){
-
             Kinerja::create([
                 'poin_cek' => 5,
                 'over_cek' => '0 Hari',
                 'user_id'=> $pengaduans->user_id,
                 'pengaduan_id' => $pengaduans->id,
             ]);
-
         }elseif(Carbon::now()->format('Y-m-d') >= $pengaduans->updated_at->addDay(2)->format('Y-m-d')){
             $jarak = $tgl_end2->diff($tgl_begin2);
             if($jarak->d == 0) {
@@ -48,14 +41,19 @@ class FollowupController extends Controller
                 'pengaduan_id' => $pengaduans->id
             ]);
             }elseif($jarak->d != 0){
-            Kinerja::create([
-                'poin_cek' => 2,
-                'over_cek' => $jarak->d . ' Hari',
-                'user_id'=> $pengaduans->user_id,
-                'pengaduan_id' => $pengaduans->id
-            ]);
+                Kinerja::create([
+                    'poin_cek' => 2,
+                    'over_cek' => $jarak->d . ' Hari',
+                    'user_id'=> $pengaduans->user_id,
+                    'pengaduan_id' => $pengaduans->id
+                ]);
             }
         }
+        $pengaduans->permasalahan = $request->permasalahan;
+        $pengaduans->tgl_followups = Carbon::now();
+        $pengaduans->pengerjaan = $request->pengerjaan;
+        $pengaduans->status = 'Progres';
+        $pengaduans->save();
 
         if($pengaduans) {
         Alert::success('Sukses', 'Data berhasil diUpdate');

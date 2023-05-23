@@ -187,7 +187,9 @@
                             {{ \Carbon\Carbon::parse($laporan->tgl_followups)->format('d-m-Y') }}
                             @endif
                           </td>
-                          <td>{{ $laporan->status }}</td>
+                          <td style="background-color: {{ App\Bgstatus::STATUS_COLOR[$laporan->status] ?? 'none' }};">
+                            {{ App\Bgstatus::STATUS_SELECT[$laporan->status] ?? '' }}
+                        </td>
                         </tr>
                         @endforeach
                         </tbody>

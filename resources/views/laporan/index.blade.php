@@ -14,13 +14,23 @@
               <form action="{{ route('laporanPDF') }}" method="post">
                 @csrf
                 <div class="form-row">
-                  <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12">
                     <label for="startDate">Dari Tanggal</label>
                     <input type="date" class="form-control" id="startDate" name="startDate" required>
                   </div>
-                  <div class="form-group col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12">
                     <label for="endDate">Sampai Tanggal</label>
                     <input type="date" class="form-control" id="endDate" name="endDate" required>
+                  </div>
+                  <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <label for="pilihan">Pilih</label>
+                    <select name="pilihan" id="pilihan" class="form-control">
+                      <option disabled selected value>-----</option>
+                      <option value="all">All</option>
+                      @foreach ($teknisis as $teknisi)
+                      <option value="{{ $teknisi->id }}">{{ $teknisi->name }}</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
                 <button type="submit" title="Cetak PDF" class="btn btn-primary mb-3"><i class="fa fa-file-pdf text-white"></i> Cetak</button>

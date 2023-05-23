@@ -29,11 +29,7 @@ class KinerjaController extends Controller
         $allKasus = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
             $query->where('status', 'Selesai')->with('pelapor');
         })->get();
-        // $kinerja = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
-        //     $query->where('status', 'Selesai');
-        // })->sum(DB::raw('poin_cek + poin_selesai'));
-        // $rataKinerja = $kinerja / $totalKasus;
-        // dd($rataKinerja);
+        
         $kinerjaBaik = Kinerja::where('user_id', $id)->whereHas('pengaduan', function($query) {
             $query->where('status', 'Selesai');
         })->select('pengaduan_id',   DB::raw('sum(poin_cek + poin_selesai) as jmlBaik'))->groupBy('pengaduan_id')->having('jmlBaik', '=', '10')->count(); // where setiap laporan poin_cek + poin_selesai = 10 
